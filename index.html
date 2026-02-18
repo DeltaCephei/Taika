@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliot's Daily Briefing — 18 Feb 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0f172a;
+            --bg-lighter: #1e293b;
+            --bg-panel: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #475569;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2332 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-light), #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .date {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::before {
+            content: '◆';
+            font-size: 1rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        details {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            background: var(--bg-panel);
+            border-color: var(--accent);
+        }
+
+        summary {
+            padding: 1.25rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-light);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: color 0.2s;
+        }
+
+        summary:hover {
+            color: var(--accent);
+        }
+
+        summary::marker {
+            color: var(--accent);
+        }
+
+        .detail-content {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-panel);
+            transform: translateY(-2px);
+        }
+
+        .skill-name {
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skill-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--bg-panel);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-tag.recommended {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .action-item {
+            background: var(--bg-panel);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .action-num {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .action-desc {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .action-skills {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .agent-eval {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .agent-assessment {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        .status-good {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .status-concern {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .new-agent {
+            background: var(--bg-panel);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-idea {
+            font-weight: 600;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .agent-detail {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .agent-benefit {
+            background: var(--bg-dark);
+            padding: 0.75rem;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 4px 4px 0;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .skills-summary {
+            background: var(--bg-panel);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--success);
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .emoji {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 0.75rem;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+        }
+
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            border-left: 2px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Eliot's Daily Briefing</h1>
+            <p>Team Alignment & OpenClaw Skills Audit</p>
+            <p class="date">18 February 2026</p>
+        </header>
+
+        <!-- SECTION 1: SKILLS AUDIT -->
+        <section>
+            <h2><span class="emoji">🔧</span> Skills Audit</h2>
+            
+            <div class="skills-summary">
+                <div class="summary-title">Quick Summary</div>
+                <div class="summary-content">
+                    <strong>53 total OpenClaw skills available.</strong> Of these, ~15 are directly relevant to your workflow (GitHub, blogging, content creation, research). Many are platform-specific (Apple-only, smart home) or domain-specific (food ordering, gaming). Below is an honest breakdown of what works for you RIGHT NOW.
+                </div>
+            </div>
+
+            <!-- TIER 1: IMMEDIATELY USEFUL -->
+            <details open>
+                <summary><span class="emoji">⭐</span> TIER 1: Directly Useful Now</summary>
+                <div class="detail-content">
+                    <div class="category-grid">
+                        <div class="skill-card">
+                            <div class="skill-name">🐙 GitHub / gh-issues</div>
+                            <div class="skill-desc">Manage issues, PRs, CI workflows. Perfect for your repos (Pursue Learning, etc.). The gh-issues skill can auto-spawn agents to fix bugs and monitor reviews.</div>
+                            <span class="skill-tag recommended">ESSENTIAL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📰 Blogwatcher</div>
+                            <div class="skill-desc">Monitor RSS/Atom feeds for updates. Monitor your Ghost blog, competitor blogs, education research feeds. Perfect for staying on top of new content in your space.</div>
+                            <span class="skill-tag recommended">ESSENTIAL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🧾 Summarize</div>
+                            <div class="skill-desc">Summarize or extract text/transcripts from URLs, PDFs, YouTube. Transcribe YouTube videos for teaching content. Extract blog post summaries. Must-have for research.</div>
+                            <span class="skill-tag recommended">ESSENTIAL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🧩 Coding Agent</div>
+                            <div class="skill-desc">Run Claude Code or Codex to help with development, code review, or automating n8n workflows. Great for quick scripting or fixing GitHub issues.</div>
+                            <span class="skill-tag recommended">ESSENTIAL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🎙️ Whisper / Transcription</div>
+                            <div class="skill-desc">Local speech-to-text for audio files or video. Perfect for extracting transcripts from recorded lectures or interviews for your blog/teaching.</div>
+                            <span class="skill-tag recommended">ESSENTIAL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🎞️ Video Frames</div>
+                            <div class="skill-desc">Extract frames or clips from videos. Useful for creating blog post graphics, educational slides, or content breakdowns.</div>
+                            <span class="skill-tag recommended">VERY USEFUL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🎮 Discord</div>
+                            <div class="skill-desc">Integrate with Discord for team communication, automating channel messages, or logging decisions. Your team coordination hub.</div>
+                            <span class="skill-tag recommended">VERY USEFUL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📜 Session Logs</div>
+                            <div class="skill-desc">Search your agent conversation history. Great for reviewing past decisions, finding references, documenting team work in Tana.</div>
+                            <span class="skill-tag recommended">VERY USEFUL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🗣️ SAG (TTS)</div>
+                            <div class="skill-desc">ElevenLabs text-to-speech. Create audio versions of blog posts, narrate videos, or generate voice content for teaching materials.</div>
+                            <span class="skill-tag recommended">USEFUL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🖼️ OpenAI Image Gen</div>
+                            <div class="skill-desc">Generate images for blog posts. Batch create illustrations or diagrams for teaching content. DALL-E 3 available.</div>
+                            <span class="skill-tag recommended">USEFUL</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">💎 Obsidian</div>
+                            <div class="skill-desc">Automate Obsidian vault management. If you ever migrate notes from Tana, this helps automate the process.</div>
+                            <span class="skill-tag">Conditional</span>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📝 Notion</div>
+                            <div class="skill-desc">Notion API integration. Less useful since you use Tana, but could backup content or export teaching materials.</div>
+                            <span class="skill-tag">Conditional</span>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- TIER 2: POTENTIALLY USEFUL -->
+            <details>
+                <summary><span class="emoji">🎯</span> TIER 2: Context-Dependent or Lower Priority</summary>
+                <div class="detail-content">
+                    <div class="category-grid">
+                        <div class="skill-card">
+                            <div class="skill-name">💬 Slack</div>
+                            <div class="skill-desc">Slack integration. Only if your team uses Slack; otherwise skip.</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📋 Trello</div>
+                            <div class="skill-desc">Trello board management. Alternative to GitHub Projects for task tracking.</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📧 Himalaya</div>
+                            <div class="skill-desc">Email CLI for IMAP/SMTP. Useful if you need to automate email workflows (unlikely unless n8n handles it).</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🌤️ Weather</div>
+                            <div class="skill-desc">Get weather forecast. Nice for contextual info, but low priority.</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🔐 1Password</div>
+                            <div class="skill-desc">1Password CLI for secrets. Useful if using 1Password for credential management.</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">📞 Voice Call</div>
+                            <div class="skill-desc">Twilio/Telnyx voice calls. Potentially useful for automated notifications but probably overkill.</div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-name">🎨 Canvas</div>
+                            <div class="skill-desc">Display HTML content on nodes. Interesting for dashboards or interactive content, but experimental.</div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- TIER 3: NOT FOR YOU -->
+            <details>
+                <summary><span class="emoji">❌</span> TIER 3: Not Relevant (Skip These)</summary>
+                <div class="detail-content">
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                        <strong>Apple-only skills:</strong> apple-notes, apple-reminders, imsg, bluebubbles, things-mac. You're likely not on macOS full-time, and Tana replaces these anyway.
+                    </p>
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                        <strong>Smart home / IoT:</strong> openhue, sonoscli, spotify-player. Not relevant unless you have these devices and want automation.
+                    </p>
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                        <strong>Niche integrations:</strong> food-order, ordercli, gog, goplaces, eightctl, wacli, peekaboo. Too specific to be useful.
+                    </p>
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                        <strong>Low utility:</strong> nano-banana-pro, nano-pdf, bear-notes, gifgrep, mcporter, oracle, healthcheck, gemini, clawhub, skill-creator, tmux, model-usage, sherpa-onnx-tts, songsee. Either too niche or already handled by better tools.
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <!-- SECTION 2: TOP 5 ACTIONS -->
+        <section>
+            <h2><span class="emoji">⚡</span> Top 5 Actions — Start Here</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                These are concrete things you can do RIGHT NOW with your team to improve your workflow and reduce friction.
+            </p>
+
+            <div class="action-item">
+                <div class="action-num">1. Connect Tana + n8n for Content Workflows</div>
+                <div class="action-title">Automate Blog Idea Capture → Publishing</div>
+                <div class="action-desc">
+                    Use <span class="highlight">Miri (Research)</span> to monitor education research feeds via blogwatcher. When interesting ideas appear, auto-log to Tana. Use <span class="highlight">Suki (Content Writer)</span> to draft posts from Tana notes. Then push to Ghost blog via n8n webhook. This closes the loop: research → idea → draft → published.
+                </div>
+                <div class="action-skills">
+                    Skills: blogwatcher, summarize, Tana API, n8n (existing)
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-num">2. Extract & Archive YouTube Transcripts for Teaching</div>
+                <div class="action-title">Build a Personal Video Knowledge Base</div>
+                <div class="action-desc">
+                    Use <span class="highlight">Miri (Research)</span> with summarize + whisper to extract transcripts from educational YouTube videos relevant to your teaching. Store in Tana with timestamps. Create a searchable archive. This becomes a reusable resource for lesson planning and student references.
+                </div>
+                <div class="action-skills">
+                    Skills: summarize, openai-whisper, video-frames, Tana
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-num">3. Set Up GitHub Issue Automation (Pursue Learning)</div>
+                <div class="action-title">Auto-Fix Bugs & Monitor PRs</div>
+                <div class="action-desc">
+                    Use <span class="highlight">Taika</span> to spawn gh-issues tasks. When you tag issues with "good-first-issue" or "bug", the agent auto-spawns sub-agents to fix them, open PRs, and respond to review comments. Dramatically reduces context-switching for you. Works even while teaching.
+                </div>
+                <div class="action-skills">
+                    Skills: gh-issues, github, coding-agent
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-num">4. Document Team Decisions in Discord + Tana</div>
+                <div class="action-title">Weekly Sync → Automatic Tana Logs</div>
+                <div class="action-desc">
+                    Use <span class="highlight">Tana/Kōrero (Documentation)</span> to monitor Discord team chats. When decisions are made, auto-log to Tana with context. Keeps your team's institutional knowledge in one place. Makes it easy to reference "who decided what and why" weeks later. ADHD-friendly: no manual note-taking during meetings.
+                </div>
+                <div class="action-skills">
+                    Skills: discord, session-logs, Tana
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-num">5. Create Blog Post Graphics + Audio Versions</div>
+                <div class="action-title">One Draft → Multiple Content Formats</div>
+                <div class="action-desc">
+                    When <span class="highlight">Suki (Content Writer)</span> finishes a blog post, use openai-image-gen to create header images automatically. Use SAG (TTS) to narrate it as an audio file for accessibility. Store both in Ghost media library. More reach, better accessibility, less manual work.
+                </div>
+                <div class="action-skills">
+                    Skills: openai-image-gen, sag (TTS), video-frames
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: AGENT EVALUATION -->
+        <section>
+            <h2><span class="emoji">👥</span> Agent Evaluation</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Honest assessment of your current team agents and how effectively they're being used.
+            </p>
+
+            <div class="agent-eval">
+                <div class="agent-name">⚙️ Taika (Chief of Staff)</div>
+                <div class="agent-role">Orchestrator, default agent, manages everything</div>
+                <div class="agent-assessment">
+                    <strong>Status:</strong> <span class="status-badge status-good">ESSENTIAL</span><br><br>
+                    Taika is your orchestrator and coordination hub. Strengths: excellent at managing parallel tasks, spawning sub-agents, and orchestrating complex workflows. Can handle gh-issues automation, Discord monitoring, and team coordination.<br><br>
+                    <strong>Current use:</strong> Moderate (mostly reactive). You're not yet leveraging the automation potential.<br><br>
+                    <strong>Improvement:</strong> Use Taika to proactively spawn sub-agents on a schedule (daily GitHub issue checks, weekly blog idea summaries, etc.). Set up cron-like tasks.
+                </div>
+            </div>
+
+            <div class="agent-eval">
+                <div class="agent-name">🎮 Lexie (Word Games)</div>
+                <div class="agent-role">Scrabble/word game strategist</div>
+                <div class="agent-assessment">
+                    <strong>Status:</strong> <span class="status-badge status-warning">UNDERUTILIZED</span><br><br>
+                    Lexie's current role (word games/Scrabble) doesn't align with your teaching/content workflow. There's no word game component in your daily work.<br><br>
+                    <strong>Current use:</strong> Minimal. This feels like a leftover from testing.<br><br>
+                    <strong>Suggestion:</strong> Either reframe Lexie for something useful (e.g., "content editor" for blog drafts, or "learning games specialist" for creating educational games) or retire the role. As-is, it's wasted capacity.
+                </div>
+            </div>
+
+            <div class="agent-eval">
+                <div class="agent-name">🔬 Miri (Research)</div>
+                <div class="agent-role">Monitors news, research across science of learning, psych, bio, AI</div>
+                <div class="agent-assessment">
+                    <strong>Status:</strong> <span class="status-badge status-good">EFFECTIVE</span><br><br>
+                    Miri is perfectly aligned with your teaching context. Monitoring education research, learning science, and psychology is exactly what you need. Can feed into blog ideas via blogwatcher + summarize.<br><br>
+                    <strong>Current use:</strong> Moderate. You probably use Miri for periodic research, but not as a daily feed into content creation.<br><br>
+                    <strong>Improvement:</strong> Formalize the workflow: Miri monitors feeds → summarizes → logs to Tana → Suki turns into blog posts. Make it a pipeline.
+                </div>
+            </div>
+
+            <div class="agent-eval">
+                <div class="agent-name">✍️ Suki (Content Writer)</div>
+                <div class="agent-role">Writes blog posts for Pursue Learning in Eliot's voice</div>
+                <div class="agent-assessment">
+                    <strong>Status:</strong> <span class="status-badge status-good">EFFECTIVE</span><br><br>
+                    Suki is essential for your blog. Strong track record of writing in your voice. Can turn rough notes into polished posts quickly.<br><br>
+                    <strong>Current use:</strong> Good. You likely use Suki regularly for blog drafts.<br><br>
+                    <strong>Improvement:</strong> Pair with openai-image-gen and SAG for a complete content pipeline. Make it so Suki's output automatically gets graphics and audio narration.
+                </div>
+            </div>
+
+            <div class="agent-eval">
+                <div class="agent-name">📚 Tana/Kōrero (Documentation)</div>
+                <div class="agent-role">Connects to Tana workspace, logs team activity</div>
+                <div class="agent-assessment">
+                    <strong>Status:</strong> <span class="status-badge status-warning">UNDERUTILIZED</span><br><br>
+                    Tana/Kōrero has the right role but seems to be reactive. You're not maximizing the potential of Tana as your knowledge base and team documentation hub.<br><br>
+                    <strong>Current use:</strong> Probably minimal. Manual logging dominates.<br><br>
+                    <strong>Improvement:</strong> Automate logging: Discord decisions → Tana, session outputs → Tana, blog ideas → Tana. Make it the single source of truth for team decisions and content. Set up scheduled syncs.
+                </div>
+            </div>
+
+            <div style="background: var(--bg-panel); padding: 1.25rem; border-left: 4px solid var(--warning); border-radius: 0 8px 8px 0; margin-top: 1.5rem;">
+                <strong style="color: var(--warning);">⚠️ Key Gap:</strong> You don't have a dedicated <strong>"GitHub + Development"</strong> agent. Taika handles some of this, but a focused agent for GitHub issues, PRs, and n8n automation would be valuable. This would handle the "code side" of your workflow (Pursue Learning repo, n8n integrations, automation scripts).
+            </div>
+        </section>
+
+        <!-- SECTION 4: SUGGESTED NEW AGENTS -->
+        <section>
+            <h2><span class="emoji">🚀</span> Suggested New Agents</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                3-5 new agents that would genuinely improve your workflow based on your tools and context.
+            </p>
+
+            <div class="new-agent">
+                <div class="agent-idea">1. 🎥 Kai (Video/Content Extraction)</div>
+                <div class="agent-detail">
+                    <strong>Purpose:</strong> Specializes in extracting transcripts, timestamps, and frames from videos. Takes YouTube URLs, Vimeo links, or recorded lectures and produces structured output: transcript with timestamps, key frames, summary, searchable segments.
+                </div>
+                <div class="agent-benefit">
+                    <strong>Why you need it:</strong> You're a teacher with ADHD. Video is everywhere in education. Kai would handle the "extract knowledge from video" workflow that currently requires manual work with Whisper + ffmpeg. Useful for: extracting lecture clips, creating video notes for Tana, finding key moments in educational videos, transcribing student recordings.
+                </div>
+            </div>
+
+            <div class="new-agent">
+                <div class="agent-idea">2. ⚙️ Nova (GitHub + n8n Automation)</div>
+                <div class="agent-detail">
+                    <strong>Purpose:</strong> Dedicated agent for GitHub workflows (issues, PRs, CI) and n8n automation tasks. Handles: auto-fixing issues, monitoring PR reviews, setting up n8n workflows for content pipelines, managing GitHub Actions, connecting Ghost blog to automation.
+                </div>
+                <div class="agent-benefit">
+                    <strong>Why you need it:</strong> Your Pursue Learning project and Ghost blog integration need a "development orchestrator." Nova would own the entire GitHub + automation layer, freeing up Taika for higher-level coordination. Pairs perfectly with the suggested gh-issues workflow (Action #3).
+                </div>
+            </div>
+
+            <div class="new-agent">
+                <div class="agent-idea">3. 📊 Riley (Analytics & Insights)</div>
+                <div class="agent-detail">
+                    <strong>Purpose:</strong> Monitors blog performance, teaching impact metrics, team productivity. Tracks: Ghost blog stats (views, engagement), GitHub activity (commits, PRs merged), team velocity, content ROI. Generates weekly summaries and recommendations.
+                </div>
+                <div class="agent-benefit">
+                    <strong>Why you need it:</strong> You're creating content (blog) and managing a team. Riley would give you visibility into what's working and where effort is best spent. Helps with ADHD by surfacing the most impactful tasks. Reports feed into Tana for decision-making.
+                </div>
+            </div>
+
+            <div class="new-agent">
+                <div class="agent-idea">4. 🎓 Alex (Teaching Resource Generator)</div>
+                <div class="agent-detail">
+                    <strong>Purpose:</strong> Creates teaching materials from your blog posts and notes. Takes a blog post or Tana note and generates: lesson plans, quiz questions, discussion prompts, slide decks, student handouts. Customizable by grade/subject.
+                </div>
+                <div class="agent-benefit">
+                    <strong>Why you need it:</strong> You're a secondary teacher. Alex would bridge the gap between content creation and classroom use. One blog post = multiple teaching artifacts automatically. Reduces prep time significantly. Works with your ADHD by automating the "make this teachable" step.
+                </div>
+            </div>
+
+            <div class="new-agent">
+                <div class="agent-idea">5. 🔗 Erin (Integration Architect)</div>
+                <div class="agent-detail">
+                    <strong>Purpose:</strong> Manages integrations between your tools: Tana ↔ Ghost blog, GitHub ↔ Tana, Discord ↔ Tana, n8n ↔ all of the above. Sets up webhooks, syncs, and data pipelines. Monitors health of integrations.
+                </div>
+                <div class="agent-benefit">
+                    <strong>Why you need it:</strong> You're juggling 5+ tools (GitHub, Ghost, Tana, Discord, n8n, YouTube). Erin ensures they talk to each other seamlessly. Reduces manual data entry and keeps everything in sync. Currently you're probably doing a lot of manual copy-paste. Erin eliminates that.
+                </div>
+            </div>
+
+            <div style="background: var(--bg-lighter); padding: 1.25rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid var(--accent);">
+                <strong style="color: var(--accent);">💡 Priority Ranking:</strong><br>
+                <ol style="color: var(--text-secondary); margin-top: 0.75rem; padding-left: 1.5rem;">
+                    <li><strong>Nova (GitHub + n8n):</strong> Highest ROI. Unblocks automation and freeing up your time.</li>
+                    <li><strong>Kai (Video Extraction):</strong> Second priority. Makes video workflows seamless for teaching.</li>
+                    <li><strong>Erin (Integrations):</strong> Third. Currently manual; high friction.</li>
+                    <li><strong>Alex (Teaching Resources):</strong> Nice-to-have but impactful for classroom work.</li>
+                    <li><strong>Riley (Analytics):</strong> Useful for reflection and decision-making; lower urgency.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- CLOSING -->
+        <section style="text-align: center; padding: 2rem 1rem; background: var(--bg-lighter); border-radius: 8px; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1rem;">🎯 Next Steps</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.8;">
+                Start with <strong>Actions #1 and #3</strong> (Tana workflows + GitHub automation). These have the highest ROI and work immediately with your current tools. Then move to <strong>New Agent: Nova</strong> to formalize the development workflow.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                This briefing will be updated weekly based on team progress and emerging needs.
+            </p>
+        </section>
+
+        <footer>
+            <p>Prepared for Eliot by Taika & Team • 18 February 2026</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);">
+                📍 NZ • 🏫 Secondary Teacher • 📝 Pursue Learning Blog • 🧠 ADHD-Aware Workflows
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
