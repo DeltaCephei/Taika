@@ -2,20 +2,6 @@
   "events": [
     {
       "date": "2026-02-19",
-      "time": "11:00",
-      "title": "Bio3 (3)",
-      "location": "L2",
-      "source": "timetable"
-    },
-    {
-      "date": "2026-02-19",
-      "time": "11:55",
-      "title": "MGC (ATE)",
-      "location": "",
-      "source": "timetable"
-    },
-    {
-      "date": "2026-02-19",
       "time": "13:25",
       "title": "MGC (ATE)",
       "location": "",
@@ -48,6 +34,13 @@
       "title": "Duty (ATE)",
       "location": "BkCg",
       "source": "timetable"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "09:00",
+      "title": "9am - 2.45pm Cruise and Explore\\, and Family Day Out",
+      "location": "Lochmara Bay\\, Queen Charlotte Sound 7220 New Zealand",
+      "source": "personal"
     },
     {
       "date": "2026-02-23",
@@ -701,5 +694,5 @@
       "source": "timetable"
     }
   ],
-  "updated": "2026-02-19T21:00:06.892271+00:00"
+  "updated": "2026-02-19T23:00:08.275414+00:00"
 }
