@@ -1259,6 +1259,96 @@
             }
         }
 
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 420px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 16px; font-size: 18px; }
+        .modal label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; margin-top: 12px; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .modal textarea { min-height: 60px; resize: vertical; }
+        .modal input:focus, .modal select:focus, .modal textarea:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .modal-actions {
+            display: flex; gap: 8px; margin-top: 20px; justify-content: flex-end;
+        }
+        .btn {
+            padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 500;
+            cursor: pointer; border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .btn-primary { background: var(--accent); border-color: var(--accent); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-danger { background: var(--danger); border-color: var(--danger); color: white; }
+        .btn-danger:hover { opacity: 0.8; }
+        .btn-ghost { background: transparent; color: var(--text-secondary); }
+        .btn-ghost:hover { color: var(--text-primary); }
+
+        /* Add button */
+        .add-btn {
+            width: 28px; height: 28px; border-radius: 6px; border: 1px dashed var(--border);
+            background: transparent; color: var(--text-secondary); font-size: 18px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; margin-left: auto;
+        }
+        .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 20px; right: 20px; padding: 12px 20px;
+            border-radius: 8px; font-size: 13px; z-index: 2000;
+            animation: slideUp 0.3s ease;
+            transition: opacity 0.3s;
+        }
+        .toast-success { background: #065f46; color: #6ee7b7; border: 1px solid #059669; }
+        .toast-error { background: #7f1d1d; color: #fca5a5; border: 1px solid #dc2626; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* Spinner overlay */
+        .spinner-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4); z-index: 1500;
+            align-items: center; justify-content: center;
+        }
+        .spinner-overlay.open { display: flex; }
+        .spinner { width: 36px; height: 36px; border: 3px solid var(--border);
+            border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Settings connection dot */
+        .connection-dot {
+            width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 6px;
+        }
+        .connection-dot.connected { background: var(--success); }
+        .connection-dot.disconnected { background: #6b7280; }
+
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 8px;
@@ -1325,6 +1415,10 @@
             <div class="nav-item" data-view="office">
                 <div class="nav-item-icon">🏢</div>
                 <div>Office</div>
+            </div>
+            <div class="nav-item" data-view="settings" style="margin-top:auto;">
+                <div class="nav-item-icon">⚙️</div>
+                <div>Settings<span id="connectionDot" class="connection-dot disconnected"></span></div>
             </div>
         </div>
 
@@ -1409,6 +1503,22 @@
                     <div class="team-container" id="teamContainer"></div>
                 </div>
 
+                <!-- Settings View -->
+                <div class="view" id="settingsView">
+                    <div class="memory-container">
+                        <h3>⚙️ GitHub Connection</h3>
+                        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">
+                            Enter a GitHub Personal Access Token with <strong>Contents: Read & Write</strong> permission on <code>DeltaCephei/Taika</code>. Stored only in your browser.
+                        </p>
+                        <input type="password" class="search-input" id="patInput" placeholder="github_pat_..." style="margin-bottom:12px;">
+                        <div style="display:flex;gap:8px;">
+                            <button class="btn btn-primary" onclick="savePAT()">Save & Test</button>
+                            <button class="btn btn-ghost" onclick="clearPAT()">Clear Token</button>
+                        </div>
+                        <div id="patStatus" style="margin-top:12px;font-size:13px;"></div>
+                    </div>
+                </div>
+
                 <!-- Office View -->
                 <div class="view" id="officeView">
                     <div class="office-container">
@@ -1437,6 +1547,55 @@
             </div>
         </div>
     </div>
+
+    <!-- Task Modal -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <h3 id="taskModalTitle">Add Task</h3>
+            <input type="hidden" id="taskEditId">
+            <label>Title</label>
+            <input type="text" id="taskTitleInput" placeholder="What needs doing?">
+            <label>Column</label>
+            <select id="taskColumnInput"></select>
+            <label>Priority</label>
+            <select id="taskPriorityInput">
+                <option value="high">🔴 High</option>
+                <option value="medium">🟡 Medium</option>
+                <option value="low">🟢 Low</option>
+            </select>
+            <label>Assignee</label>
+            <select id="taskAssigneeInput"></select>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="taskDeleteBtn" onclick="deleteTask()" style="margin-right:auto;display:none;">Delete</button>
+                <button class="btn btn-ghost" onclick="closeModal('taskModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveTask()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pipeline Modal -->
+    <div class="modal-overlay" id="pipelineModal">
+        <div class="modal">
+            <h3 id="pipelineModalTitle">Add Content</h3>
+            <input type="hidden" id="pipelineEditId">
+            <label>Title</label>
+            <input type="text" id="pipelineTitleInput" placeholder="Content title...">
+            <label>Notes</label>
+            <textarea id="pipelineNotesInput" placeholder="Brief description..."></textarea>
+            <label>Stage</label>
+            <select id="pipelineStageInput"></select>
+            <label>Assignee</label>
+            <select id="pipelineAssigneeInput"></select>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="pipelineDeleteBtn" onclick="deletePipelineItem()" style="margin-right:auto;display:none;">Delete</button>
+                <button class="btn btn-ghost" onclick="closeModal('pipelineModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="savePipelineItem()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spinner -->
+    <div class="spinner-overlay" id="spinner"><div class="spinner"></div></div>
 
     <script>
         // Data store
@@ -1487,7 +1646,8 @@
                 calendar: '📅 Calendar',
                 memory: '🧠 Memory',
                 team: '👥 Team',
-                office: '🏢 Office'
+                office: '🏢 Office',
+                settings: '⚙️ Settings'
             };
             document.getElementById('viewTitle').textContent = titles[viewName];
         }
@@ -1513,7 +1673,7 @@
 
                 const header = document.createElement('div');
                 header.className = 'column-header';
-                header.innerHTML = `<span>${column.emoji}</span><span>${column.name}</span>`;
+                header.innerHTML = `<span>${column.emoji}</span><span>${column.name}</span><button class="add-btn" onclick="openAddTask('${column.id}')" title="Add task">+</button>`;
                 columnEl.appendChild(header);
 
                 const tasksContainer = document.createElement('div');
@@ -1523,6 +1683,8 @@
                     const assignee = data.team.agents.find(a => a.id === task.assignee);
                     const taskEl = document.createElement('div');
                     taskEl.className = 'task-card';
+                    taskEl.style.cursor = 'pointer';
+                    taskEl.onclick = () => openEditTask(task.id);
                     taskEl.innerHTML = `
                         <div class="task-title">${task.title}</div>
                         <div class="task-footer">
@@ -1553,7 +1715,7 @@
                 header.className = 'stage-header';
                 header.style.backgroundColor = stage.color + '20';
                 header.style.color = stage.color;
-                header.textContent = stage.name;
+                header.innerHTML = `${stage.name}<button class="add-btn" onclick="openAddPipeline('${stage.id}')" title="Add content" style="margin-left:8px;">+</button>`;
                 stageEl.appendChild(header);
 
                 const itemsContainer = document.createElement('div');
@@ -1563,6 +1725,8 @@
                     const assignee = data.team.agents.find(a => a.id === item.assignee);
                     const itemEl = document.createElement('div');
                     itemEl.className = 'pipeline-card';
+                    itemEl.style.cursor = 'pointer';
+                    itemEl.onclick = () => openEditPipeline(item.id);
                     itemEl.innerHTML = `
                         <div class="pipeline-card-title">${item.title}</div>
                         <div class="pipeline-card-notes">${item.notes}</div>
@@ -1978,8 +2142,8 @@
             const container = document.getElementById('teamContainer');
             container.innerHTML = '';
 
-            const tiers = ['lead', 'core', 'meta'];
-            const tierLabels = { lead: 'Leadership', core: 'Core Team', meta: 'Infrastructure' };
+            const tiers = ['lead', 'core', 'specialist', 'creative', 'education', 'meta'];
+            const tierLabels = { lead: 'Leadership', core: 'Core Team', specialist: 'Subject Specialists', creative: 'Creative', education: 'Education', meta: 'Infrastructure' };
 
             tiers.forEach(tier => {
                 const agents = data.team.agents.filter(a => a.tier === tier);
@@ -2329,10 +2493,276 @@
             });
         });
 
+        // ==================== GITHUB API ====================
+        const REPO = 'DeltaCephei/Taika';
+        const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
+
+        function getPAT() { return localStorage.getItem('mc_github_pat') || ''; }
+
+        function updateConnectionDot() {
+            const dot = document.getElementById('connectionDot');
+            if (dot) {
+                dot.className = getPAT() ? 'connection-dot connected' : 'connection-dot disconnected';
+            }
+        }
+
+        async function savePAT() {
+            const pat = document.getElementById('patInput').value.trim();
+            const status = document.getElementById('patStatus');
+            if (!pat) { status.innerHTML = '❌ Enter a token'; return; }
+            status.innerHTML = '⏳ Testing...';
+            try {
+                const res = await fetch(`https://api.github.com/repos/${REPO}`, {
+                    headers: { 'Authorization': `Bearer ${pat}` }
+                });
+                if (res.ok) {
+                    localStorage.setItem('mc_github_pat', pat);
+                    status.innerHTML = '✅ Connected! Token saved.';
+                    updateConnectionDot();
+                } else {
+                    status.innerHTML = `❌ Failed (${res.status}). Check token permissions.`;
+                }
+            } catch(e) { status.innerHTML = '❌ Network error'; }
+        }
+
+        function clearPAT() {
+            localStorage.removeItem('mc_github_pat');
+            document.getElementById('patInput').value = '';
+            document.getElementById('patStatus').innerHTML = 'Token cleared.';
+            updateConnectionDot();
+        }
+
+        async function ghRead(path) {
+            const res = await fetch(API_BASE + path, {
+                headers: { 'Authorization': `Bearer ${getPAT()}`, 'Accept': 'application/vnd.github.v3+json' }
+            });
+            if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
+            const json = await res.json();
+            return { content: JSON.parse(atob(json.content)), sha: json.sha };
+        }
+
+        async function ghWrite(path, content, sha, message) {
+            const res = await fetch(API_BASE + path, {
+                method: 'PUT',
+                headers: { 'Authorization': `Bearer ${getPAT()}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message || `Update ${path}`,
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+                    sha: sha
+                })
+            });
+            if (!res.ok) throw new Error(`GitHub write failed: ${res.status}`);
+            return res.json();
+        }
+
+        function showSpinner() { document.getElementById('spinner').classList.add('open'); }
+        function hideSpinner() { document.getElementById('spinner').classList.remove('open'); }
+
+        function showToast(msg, type = 'success') {
+            const t = document.createElement('div');
+            t.className = `toast toast-${type}`;
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2500);
+        }
+
+        function requirePAT() {
+            if (!getPAT()) { showToast('Set up GitHub token in Settings first', 'error'); return false; }
+            return true;
+        }
+
+        // ==================== MODALS ====================
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+        });
+
+        // ==================== TASKS INTERACTIVE ====================
+        function populateTaskForm(task, columnId) {
+            // Columns
+            const colSel = document.getElementById('taskColumnInput');
+            colSel.innerHTML = data.tasks.columns.map(c => `<option value="${c.id}">${c.emoji} ${c.name}</option>`).join('');
+            // Assignees
+            const asgSel = document.getElementById('taskAssigneeInput');
+            asgSel.innerHTML = data.team.agents.map(a => `<option value="${a.id}">${a.emoji} ${a.name}</option>`).join('');
+
+            if (task) {
+                document.getElementById('taskModalTitle').textContent = 'Edit Task';
+                document.getElementById('taskEditId').value = task.id;
+                document.getElementById('taskTitleInput').value = task.title;
+                document.getElementById('taskColumnInput').value = task.column;
+                document.getElementById('taskPriorityInput').value = task.priority;
+                document.getElementById('taskAssigneeInput').value = task.assignee;
+                document.getElementById('taskDeleteBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('taskModalTitle').textContent = 'Add Task';
+                document.getElementById('taskEditId').value = '';
+                document.getElementById('taskTitleInput').value = '';
+                document.getElementById('taskColumnInput').value = columnId || 'backlog';
+                document.getElementById('taskPriorityInput').value = 'medium';
+                document.getElementById('taskAssigneeInput').value = 'taika';
+                document.getElementById('taskDeleteBtn').style.display = 'none';
+            }
+        }
+
+        function openAddTask(columnId) {
+            if (!requirePAT()) return;
+            populateTaskForm(null, columnId);
+            openModal('taskModal');
+        }
+
+        function openEditTask(taskId) {
+            if (!requirePAT()) return;
+            const task = data.tasks.tasks.find(t => t.id === taskId);
+            if (!task) return;
+            populateTaskForm(task);
+            openModal('taskModal');
+        }
+
+        async function saveTask() {
+            const editId = document.getElementById('taskEditId').value;
+            const title = document.getElementById('taskTitleInput').value.trim();
+            if (!title) { showToast('Title required', 'error'); return; }
+
+            const taskData = {
+                title,
+                column: document.getElementById('taskColumnInput').value,
+                priority: document.getElementById('taskPriorityInput').value,
+                assignee: document.getElementById('taskAssigneeInput').value
+            };
+
+            closeModal('taskModal');
+            showSpinner();
+            try {
+                const { content, sha } = await ghRead('data/tasks.json');
+                if (editId) {
+                    const idx = content.tasks.findIndex(t => t.id == editId);
+                    if (idx >= 0) Object.assign(content.tasks[idx], taskData);
+                } else {
+                    const maxId = Math.max(0, ...content.tasks.map(t => t.id));
+                    content.tasks.push({ id: maxId + 1, ...taskData });
+                }
+                await ghWrite('data/tasks.json', content, sha, editId ? `Update task: ${title}` : `Add task: ${title}`);
+                data.tasks = content;
+                renderTasks();
+                showToast(editId ? 'Task updated ✅' : 'Task added ✅');
+            } catch(e) { showToast('Failed: ' + e.message, 'error'); }
+            hideSpinner();
+        }
+
+        async function deleteTask() {
+            const editId = document.getElementById('taskEditId').value;
+            if (!editId || !confirm('Delete this task?')) return;
+            closeModal('taskModal');
+            showSpinner();
+            try {
+                const { content, sha } = await ghRead('data/tasks.json');
+                content.tasks = content.tasks.filter(t => t.id != editId);
+                await ghWrite('data/tasks.json', content, sha, `Delete task #${editId}`);
+                data.tasks = content;
+                renderTasks();
+                showToast('Task deleted');
+            } catch(e) { showToast('Failed: ' + e.message, 'error'); }
+            hideSpinner();
+        }
+
+        // ==================== PIPELINE INTERACTIVE ====================
+        function populatePipelineForm(item, stageId) {
+            const stageSel = document.getElementById('pipelineStageInput');
+            stageSel.innerHTML = data.pipeline.stages.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+            const asgSel = document.getElementById('pipelineAssigneeInput');
+            asgSel.innerHTML = data.team.agents.map(a => `<option value="${a.id}">${a.emoji} ${a.name}</option>`).join('');
+
+            if (item) {
+                document.getElementById('pipelineModalTitle').textContent = 'Edit Content';
+                document.getElementById('pipelineEditId').value = item.id;
+                document.getElementById('pipelineTitleInput').value = item.title;
+                document.getElementById('pipelineNotesInput').value = item.notes || '';
+                document.getElementById('pipelineStageInput').value = item.stage;
+                document.getElementById('pipelineAssigneeInput').value = item.assignee;
+                document.getElementById('pipelineDeleteBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('pipelineModalTitle').textContent = 'Add Content';
+                document.getElementById('pipelineEditId').value = '';
+                document.getElementById('pipelineTitleInput').value = '';
+                document.getElementById('pipelineNotesInput').value = '';
+                document.getElementById('pipelineStageInput').value = stageId || 'ideas';
+                document.getElementById('pipelineAssigneeInput').value = 'suki';
+                document.getElementById('pipelineDeleteBtn').style.display = 'none';
+            }
+        }
+
+        function openAddPipeline(stageId) {
+            if (!requirePAT()) return;
+            populatePipelineForm(null, stageId);
+            openModal('pipelineModal');
+        }
+
+        function openEditPipeline(itemId) {
+            if (!requirePAT()) return;
+            const item = data.pipeline.items.find(i => i.id === itemId);
+            if (!item) return;
+            populatePipelineForm(item);
+            openModal('pipelineModal');
+        }
+
+        async function savePipelineItem() {
+            const editId = document.getElementById('pipelineEditId').value;
+            const title = document.getElementById('pipelineTitleInput').value.trim();
+            if (!title) { showToast('Title required', 'error'); return; }
+
+            const itemData = {
+                title,
+                notes: document.getElementById('pipelineNotesInput').value.trim(),
+                stage: document.getElementById('pipelineStageInput').value,
+                assignee: document.getElementById('pipelineAssigneeInput').value
+            };
+
+            closeModal('pipelineModal');
+            showSpinner();
+            try {
+                const { content, sha } = await ghRead('data/pipeline.json');
+                if (editId) {
+                    const idx = content.items.findIndex(i => i.id == editId);
+                    if (idx >= 0) Object.assign(content.items[idx], itemData);
+                } else {
+                    const maxId = Math.max(0, ...content.items.map(i => i.id));
+                    content.items.push({ id: maxId + 1, ...itemData });
+                }
+                await ghWrite('data/pipeline.json', content, sha, editId ? `Update content: ${title}` : `Add content: ${title}`);
+                data.pipeline = content;
+                renderPipeline();
+                showToast(editId ? 'Content updated ✅' : 'Content added ✅');
+            } catch(e) { showToast('Failed: ' + e.message, 'error'); }
+            hideSpinner();
+        }
+
+        async function deletePipelineItem() {
+            const editId = document.getElementById('pipelineEditId').value;
+            if (!editId || !confirm('Delete this content item?')) return;
+            closeModal('pipelineModal');
+            showSpinner();
+            try {
+                const { content, sha } = await ghRead('data/pipeline.json');
+                content.items = content.items.filter(i => i.id != editId);
+                await ghWrite('data/pipeline.json', content, sha, `Delete content #${editId}`);
+                data.pipeline = content;
+                renderPipeline();
+                showToast('Content deleted');
+            } catch(e) { showToast('Failed: ' + e.message, 'error'); }
+            hideSpinner();
+        }
+
         // Init
         updateTime();
         setInterval(updateTime, 60000);
         loadData();
+        updateConnectionDot();
+        // Pre-fill PAT input if saved
+        if (getPAT()) document.getElementById('patInput').value = '••••••••••••••••';
     </script>
 </body>
 </html>
