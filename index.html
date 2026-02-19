@@ -144,6 +144,12 @@
         .view.active {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .view.active#officeView {
+            flex-direction: row;
         }
 
         /* Kanban Board */
@@ -560,60 +566,348 @@
             color: var(--text-primary);
         }
 
-        /* Office */
+        /* Office v2 - Animated Pixel Art */
         .office-container {
-            max-width: 1000px;
+            display: flex;
+            gap: 20px;
+            height: 100%;
+            width: 100%;
         }
 
-        .office {
-            background-color: var(--bg-secondary);
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 40px;
-            min-height: 500px;
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
-            align-items: start;
-        }
-
-        .desk {
+        .office-main {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 16px;
         }
 
-        .desk-emoji {
-            font-size: 48px;
-            margin-bottom: 12px;
+        .office-controls {
+            display: flex;
+            gap: 12px;
         }
 
-        .desk-name {
-            font-size: 14px;
+        .office-btn {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 13px;
             font-weight: 500;
-            margin-bottom: 8px;
         }
 
-        .desk-status {
+        .office-btn:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .office-btn.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .office-space {
+            flex: 1;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+            overflow: auto;
+            min-height: 350px;
+            min-width: 500px;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 0;
+        }
+
+        /* Pixel Art Furniture */
+        .office-furniture {
+            position: absolute;
+            z-index: 10;
+        }
+
+        .furniture-desk {
+            width: 60px;
+            height: 40px;
+            background-color: #4a3728;
+            border: 2px solid #2a2218;
+            border-radius: 2px;
+            box-shadow: inset 0 0 0 1px #3a2c18;
+        }
+
+        .furniture-monitor {
+            position: absolute;
+            width: 32px;
+            height: 24px;
+            background-color: #1a1a2e;
+            border: 2px solid #9ca3af;
+            border-radius: 2px;
+            left: 14px;
+            top: -28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            font-size: 10px;
+            color: #9ca3af;
+        }
+
+        .furniture-monitor.active {
+            box-shadow: 0 0 12px var(--accent), inset 0 0 8px rgba(96, 165, 250, 0.3);
+        }
+
+        .furniture-monitor.miri-active { box-shadow: 0 0 12px #34d399, inset 0 0 8px rgba(52, 211, 153, 0.3); }
+        .furniture-monitor.suki-active { box-shadow: 0 0 12px #f472b6, inset 0 0 8px rgba(244, 114, 182, 0.3); }
+        .furniture-monitor.korero-active { box-shadow: 0 0 12px #fbbf24, inset 0 0 8px rgba(251, 191, 36, 0.3); }
+        .furniture-monitor.lexie-active { box-shadow: 0 0 12px #a78bfa, inset 0 0 8px rgba(167, 139, 250, 0.3); }
+        .furniture-monitor.nova-active { box-shadow: 0 0 12px #fb923c, inset 0 0 8px rgba(251, 146, 60, 0.3); }
+
+        .water-cooler {
+            width: 30px;
+            height: 50px;
+            background-color: #c0d9f0;
+            border: 2px solid #a0b8d8;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .water-cooler::before {
+            content: '💧';
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 12px;
-            color: var(--text-secondary);
+        }
+
+        .plant {
+            width: 24px;
+            height: 32px;
+            background-color: #22863a;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            border: 2px solid #1a6029;
+        }
+
+        .plant::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background-color: #22863a;
+            left: 2px;
+            top: 6px;
+            transform: rotate(-30deg);
+            border-radius: 50%;
+        }
+
+        .plant::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background-color: #22863a;
+            right: 2px;
+            top: 6px;
+            transform: rotate(30deg);
+            border-radius: 50%;
+        }
+
+        .whiteboard {
+            width: 48px;
+            height: 36px;
+            background-color: #f5f5f5;
+            border: 2px solid #4a4a4a;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .whiteboard::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 1px;
+            background-color: #8B4513;
+            top: 50%;
+            left: 25%;
+            transform: translateY(-50%);
+            box-shadow: 0 3px 0 #8B4513, 0 6px 0 #8B4513;
         }
 
         .meeting-table {
-            grid-column: 1 / -1;
-            background-color: var(--bg-tertiary);
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-            font-size: 14px;
+            width: 100px;
+            height: 60px;
+            border: 3px dashed var(--border);
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
             color: var(--text-secondary);
+        }
+
+        /* Agent Avatar */
+        .agent-avatar {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: left 0.8s ease, top 0.8s ease;
+            z-index: 20;
+        }
+
+        .agent-avatar.walking {
+            animation: walk 0.8s ease infinite;
+        }
+
+        @keyframes walk {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-1px); }
+            75% { transform: translateX(1px); }
+        }
+
+        .agent-head {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-bottom: 2px;
+            position: relative;
+        }
+
+        .agent-body {
+            width: 14px;
+            height: 12px;
+            background-color: var(--border);
+            border-radius: 2px;
+            margin-bottom: 2px;
+        }
+
+        .agent-label {
+            font-size: 10px;
+            white-space: nowrap;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .agent-status-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            bottom: -2px;
+            right: -2px;
+            border: 1px solid var(--bg-secondary);
+        }
+
+        .agent-typing {
+            position: absolute;
+            bottom: -8px;
+            font-size: 6px;
+            letter-spacing: 1px;
+            animation: typing 1s infinite;
+        }
+
+        @keyframes typing {
+            0%, 20% { content: '•'; }
+            40% { content: '•  •'; }
+            60%, 100% { content: '•  •  •'; }
+        }
+
+        /* Agent State Animations */
+        .agent-avatar.working .agent-head {
+            animation: bob 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .agent-avatar.idle .agent-head {
+            animation: sway 2s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .agent-avatar.planned .agent-head,
+        .agent-avatar.planned .agent-body {
+            opacity: 0.4;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Activity Panel */
+        .activity-panel {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+        }
+
+        .activity-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .activity-item {
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 8px;
+            background-color: var(--bg-tertiary);
+            border-radius: 6px;
+            animation: fadeIn 0.3s ease;
+            border-left: 2px solid var(--accent);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Office View Layout Fix */
+        #officeView {
+            display: flex !important;
+            flex-direction: row !important;
+            height: 100% !important;
         }
 
         /* Responsive */
@@ -648,8 +942,12 @@
                 gap: 10px;
             }
 
-            .office {
-                grid-template-columns: repeat(2, 1fr);
+            .office-container {
+                flex-direction: column !important;
+            }
+
+            .activity-panel {
+                width: 100% !important;
             }
 
             .agent-card.lead {
@@ -796,7 +1094,26 @@
                 <!-- Office View -->
                 <div class="view" id="officeView">
                     <div class="office-container">
-                        <div class="office" id="office"></div>
+                        <div class="office-main">
+                            <div class="office-controls">
+                                <button class="office-btn active" data-location="desks">All Working</button>
+                                <button class="office-btn" data-location="table">Gather</button>
+                                <button class="office-btn" data-location="cooler">Watercooler</button>
+                            </div>
+                            <div class="office-space" id="officeSpace">
+                                <!-- Furniture will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="activity-panel">
+                            <div class="activity-header">📊 Live Activity</div>
+                            <div class="activity-list" id="activityList">
+                                <div class="activity-item">✍️ Suki started blog draft</div>
+                                <div class="activity-item">🔍 Miri completed research scan</div>
+                                <div class="activity-item">📝 Kōrero archived decisions</div>
+                                <div class="activity-item">🎯 Lexie reviewed content v2</div>
+                                <div class="activity-item">🪶 Taika assigned task to Miri</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1080,33 +1397,276 @@
             });
         }
 
+        // Office state
+        const officeState = {
+            location: 'desks',
+            agents: {},
+            movementIntervals: {},
+            activityIndex: 0
+        };
+
+        const deskPositions = [
+            { x: 60, y: 60, name: 'Desk 1' },
+            { x: 220, y: 60, name: 'Desk 2' },
+            { x: 380, y: 60, name: 'Desk 3' },
+            { x: 60, y: 200, name: 'Desk 4' },
+            { x: 220, y: 200, name: 'Desk 5' },
+            { x: 380, y: 200, name: 'Desk 6' }
+        ];
+
+        const decorationPositions = [
+            { type: 'plant', x: 30, y: 30 },
+            { type: 'plant', x: 430, y: 30 },
+            { type: 'whiteboard', x: 450, y: 100 },
+            { type: 'plant', x: 30, y: 250 },
+            { type: 'cooler', x: 460, y: 200 }
+        ];
+
+        const tablePosition = { x: 200, y: 140 };
+        const coolerPosition = { x: 460, y: 200 };
+
+        const activities = [
+            "✍️ Suki started blog draft",
+            "🔍 Miri completed research scan",
+            "📝 Kōrero archived decisions",
+            "🎯 Lexie reviewed content v2",
+            "🪶 Taika assigned task to Miri",
+            "✍️ Suki polished opening paragraph",
+            "🔍 Miri flagged new research",
+            "📝 Kōrero updated decision log",
+            "🎯 Lexie found typo in draft",
+            "⚙️ Nova fixed deployment issue"
+        ];
+
         // Render office
         function renderOffice() {
-            const office = document.getElementById('office');
-            office.innerHTML = '';
+            const space = document.getElementById('officeSpace');
+            space.innerHTML = '';
 
-            const agents = data.team.agents.filter(a => a.id !== 'taika' && a.id !== 'nova');
-
-            agents.forEach(agent => {
-                const desk = document.createElement('div');
-                desk.className = 'desk';
-                const working = agent.status === 'active';
-                desk.innerHTML = `
-                    <div class="desk-emoji">${agent.emoji}</div>
-                    <div class="desk-name">${agent.name}</div>
-                    <div class="desk-status">
-                        <div class="status-dot status-${agent.status}"></div>
-                        <span>${working ? 'Working' : 'Away'}</span>
-                    </div>
-                `;
-                office.appendChild(desk);
+            // Add decorations
+            decorationPositions.forEach(deco => {
+                const el = document.createElement('div');
+                el.className = `office-furniture furniture-${deco.type}`;
+                el.style.left = deco.x + 'px';
+                el.style.top = deco.y + 'px';
+                
+                if (deco.type === 'plant') {
+                    el.innerHTML = '<div class="plant"></div>';
+                } else if (deco.type === 'whiteboard') {
+                    el.innerHTML = '<div class="whiteboard"></div>';
+                } else if (deco.type === 'cooler') {
+                    el.innerHTML = '<div class="water-cooler"></div>';
+                }
+                space.appendChild(el);
             });
 
+            // Add desks with monitors
+            deskPositions.forEach((pos, idx) => {
+                const desk = document.createElement('div');
+                desk.className = 'office-furniture furniture-desk';
+                desk.style.left = pos.x + 'px';
+                desk.style.top = pos.y + 'px';
+                desk.innerHTML = '<div class="furniture-monitor"></div>';
+                space.appendChild(desk);
+            });
+
+            // Add meeting table
             const table = document.createElement('div');
             table.className = 'meeting-table';
-            table.innerHTML = '🪑 Team Meeting Table';
-            office.appendChild(table);
+            table.style.left = (tablePosition.x - 50) + 'px';
+            table.style.top = (tablePosition.y - 30) + 'px';
+            table.innerHTML = '🪑';
+            space.appendChild(table);
+
+            // Initialize agent positions
+            const activeAgents = data.team.agents.filter(a => a.status !== 'planned');
+            const plannedAgents = data.team.agents.filter(a => a.status === 'planned');
+
+            // Initialize state
+            activeAgents.forEach((agent, idx) => {
+                if (!officeState.agents[agent.id]) {
+                    officeState.agents[agent.id] = {
+                        element: null,
+                        x: deskPositions[idx] ? deskPositions[idx].x + 20 : 0,
+                        y: deskPositions[idx] ? deskPositions[idx].y + 40 : 0,
+                        targetX: deskPositions[idx] ? deskPositions[idx].x + 20 : 0,
+                        targetY: deskPositions[idx] ? deskPositions[idx].y + 40 : 0,
+                        deskIndex: idx,
+                        isMoving: false
+                    };
+                }
+            });
+
+            plannedAgents.forEach((agent, idx) => {
+                if (!officeState.agents[agent.id]) {
+                    const posIdx = activeAgents.length + idx;
+                    officeState.agents[agent.id] = {
+                        element: null,
+                        x: deskPositions[posIdx] ? deskPositions[posIdx].x + 20 : 0,
+                        y: deskPositions[posIdx] ? deskPositions[posIdx].y + 40 : 0,
+                        targetX: deskPositions[posIdx] ? deskPositions[posIdx].x + 20 : 0,
+                        targetY: deskPositions[posIdx] ? deskPositions[posIdx].y + 40 : 0,
+                        deskIndex: posIdx
+                    };
+                }
+            });
+
+            // Create agent avatars
+            data.team.agents.forEach((agent) => {
+                const state = officeState.agents[agent.id];
+                const avatar = document.createElement('div');
+                avatar.className = `agent-avatar ${agent.status}`;
+                avatar.id = `agent-${agent.id}`;
+                avatar.style.left = state.x + 'px';
+                avatar.style.top = state.y + 'px';
+                
+                const statusColor = {
+                    active: '#10b981',
+                    idle: '#6b7280',
+                    planned: '#60a5fa'
+                }[agent.status];
+
+                avatar.innerHTML = `
+                    <div class="agent-head" style="background-color: ${agent.color}20; border-color: ${agent.color};">
+                        <span style="font-size: 14px;">${agent.emoji}</span>
+                        <div class="agent-status-dot" style="background-color: ${statusColor};"></div>
+                    </div>
+                    <div class="agent-body" style="background-color: ${agent.color}40;"></div>
+                    <div class="agent-label">${agent.name}</div>
+                `;
+                
+                state.element = avatar;
+                space.appendChild(avatar);
+            });
+
+            startAgentAnimations();
         }
+
+        // Start agent movement animations
+        function startAgentAnimations() {
+            // Clear any existing intervals
+            Object.values(officeState.movementIntervals).forEach(interval => clearInterval(interval));
+            officeState.movementIntervals = {};
+
+            const activeAgents = data.team.agents.filter(a => a.status === 'active');
+            
+            activeAgents.forEach((agent, idx) => {
+                const delay = idx * 3000 + Math.random() * 2000;
+                
+                officeState.movementIntervals[agent.id] = setInterval(() => {
+                    if (officeState.location !== 'desks') return;
+                    
+                    const state = officeState.agents[agent.id];
+                    if (Math.random() > 0.6) {
+                        moveAgentToTable(agent.id);
+                        setTimeout(() => {
+                            moveAgentToDesk(agent.id);
+                        }, 3000);
+                    }
+                }, 8000 + Math.random() * 4000);
+            });
+        }
+
+        // Movement functions
+        function moveAgentToTable(agentId) {
+            const state = officeState.agents[agentId];
+            if (!state) return;
+            
+            state.isMoving = true;
+            state.targetX = tablePosition.x + Math.random() * 40 - 20;
+            state.targetY = tablePosition.y + Math.random() * 30 - 15;
+            
+            const avatar = state.element;
+            if (avatar) {
+                avatar.classList.add('walking');
+            }
+        }
+
+        function moveAgentToDesk(agentId) {
+            const state = officeState.agents[agentId];
+            if (!state) return;
+            
+            const desk = deskPositions[state.deskIndex];
+            if (!desk) return;
+            
+            state.targetX = desk.x + 20;
+            state.targetY = desk.y + 40;
+            
+            const avatar = state.element;
+            if (avatar) {
+                avatar.classList.add('walking');
+            }
+        }
+
+        function moveAllAgentsToLocation(location) {
+            officeState.location = location;
+            const space = document.getElementById('officeSpace');
+            
+            if (!space) return;
+
+            data.team.agents.forEach((agent) => {
+                const state = officeState.agents[agent.id];
+                if (!state || !state.element) return;
+
+                state.element.classList.remove('walking');
+
+                let targetX, targetY;
+                
+                if (location === 'desks') {
+                    const desk = deskPositions[state.deskIndex];
+                    if (desk) {
+                        targetX = desk.x + 20;
+                        targetY = desk.y + 40;
+                    }
+                } else if (location === 'table') {
+                    targetX = tablePosition.x + Math.random() * 30 - 15;
+                    targetY = tablePosition.y + Math.random() * 25 - 12;
+                } else if (location === 'cooler') {
+                    targetX = coolerPosition.x - 40 + Math.random() * 40;
+                    targetY = coolerPosition.y + Math.random() * 30;
+                }
+
+                if (targetX !== undefined && targetY !== undefined) {
+                    state.element.style.left = targetX + 'px';
+                    state.element.style.top = targetY + 'px';
+                }
+            });
+
+            startAgentAnimations();
+        }
+
+        // Activity feed
+        function addActivity(text) {
+            const list = document.getElementById('activityList');
+            if (!list) return;
+
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            item.textContent = text;
+            
+            list.insertBefore(item, list.firstChild);
+            
+            if (list.children.length > 6) {
+                list.removeChild(list.lastChild);
+            }
+        }
+
+        // Control buttons
+        document.querySelectorAll('.office-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.office-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const location = btn.dataset.location;
+                moveAllAgentsToLocation(location);
+            });
+        });
+
+        // Random activities
+        setInterval(() => {
+            const activity = activities[Math.floor(Math.random() * activities.length)];
+            addActivity(activity);
+        }, 5000);
 
         // Render all
         function render() {
