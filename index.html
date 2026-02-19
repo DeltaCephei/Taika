@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliot's Daily Briefing — 18 Feb 2026</title>
+    <title>⚡ Mission Control</title>
     <style>
         * {
             margin: 0;
@@ -12,900 +12,1125 @@
         }
 
         :root {
-            --bg-dark: #0f172a;
-            --bg-lighter: #1e293b;
-            --bg-panel: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --accent: #3b82f6;
-            --accent-light: #60a5fa;
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #2a2a3e;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --border: #3a3a4e;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --border: #475569;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2332 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 1rem;
+            overflow: hidden;
+            height: 100vh;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 2rem 0;
-            border-bottom: 2px solid var(--accent);
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 20px 0;
         }
 
-        header h1 {
-            font-size: 2.5rem;
+        .sidebar-header {
+            padding: 0 20px 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--accent-light), #93c5fd);
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+            animation: glow 2s ease-in-out infinite;
         }
 
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.25rem;
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
-        .date {
-            font-size: 0.95rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        section {
-            margin-bottom: 2.5rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--accent-light);
+        .nav-item {
+            padding: 12px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            user-select: none;
         }
 
-        h2::before {
-            content: '◆';
-            font-size: 1rem;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+        .nav-item:hover {
+            background-color: var(--bg-tertiary);
             color: var(--text-primary);
         }
 
-        details {
-            background: var(--bg-lighter);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        .nav-item.active {
+            background-color: var(--accent);
+            color: white;
         }
 
-        details[open] {
-            background: var(--bg-panel);
-            border-color: var(--accent);
+        .nav-item-icon {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
         }
 
-        summary {
-            padding: 1.25rem;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--accent-light);
-            user-select: none;
+        /* Main Content */
+        .main {
+            flex: 1;
             display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.75rem;
-            transition: color 0.2s;
         }
 
-        summary:hover {
-            color: var(--accent);
+        .header-title {
+            font-size: 24px;
+            font-weight: 600;
         }
 
-        summary::marker {
-            color: var(--accent);
+        .header-time {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
-        .detail-content {
-            padding: 0 1.25rem 1.25rem 1.25rem;
-            background: var(--bg-dark);
-            border-top: 1px solid var(--border);
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+        /* Views */
+        .view {
+            display: none;
         }
 
-        .skill-card {
-            background: var(--bg-lighter);
+        .view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Kanban Board */
+        .kanban {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            height: 100%;
+        }
+
+        .column {
+            min-width: 320px;
+            background-color: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            gap: 8px;
+        }
+
+        .column-tasks {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+        }
+
+        .task-card {
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 1.25rem;
-            transition: all 0.3s ease;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .skill-card:hover {
+        .task-card:hover {
             border-color: var(--accent);
-            background: var(--bg-panel);
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.1);
+        }
+
+        .task-title {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .task-assignee {
+            font-size: 16px;
+        }
+
+        .priority-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .priority-high { background-color: var(--danger); }
+        .priority-medium { background-color: var(--warning); }
+        .priority-low { background-color: var(--success); }
+
+        /* Pipeline */
+        .pipeline {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            height: 100%;
+        }
+
+        .stage {
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stage-header {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .stage-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .pipeline-card {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pipeline-card:hover {
+            border-color: var(--accent);
             transform: translateY(-2px);
         }
 
-        .skill-name {
-            font-weight: 700;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
-            font-size: 1.05rem;
+        .pipeline-card-title {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
         }
 
-        .skill-desc {
-            font-size: 0.9rem;
+        .pipeline-card-notes {
+            font-size: 12px;
             color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
+            margin-bottom: 8px;
         }
 
-        .skill-tag {
-            display: inline-block;
-            background: var(--bg-panel);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
+        .pipeline-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Calendar */
+        .calendar-container {
+            max-width: 600px;
+        }
+
+        .calendar {
+            background-color: var(--bg-secondary);
             border-radius: 12px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-top: 0.5rem;
+            padding: 24px;
+            border: 1px solid var(--border);
         }
 
-        .skill-tag.recommended {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-            border: 1px solid var(--success);
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
         }
 
-        .action-item {
-            background: var(--bg-panel);
-            border-left: 4px solid var(--accent);
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .action-num {
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .action-title {
+        .calendar-month {
+            font-size: 18px;
             font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
         }
 
-        .action-desc {
+        .calendar-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .calendar-btn {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+        }
+
+        .calendar-btn:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .weekday {
+            text-align: center;
+            font-weight: 600;
+            font-size: 12px;
             color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            line-height: 1.6;
+            padding: 8px 0;
         }
 
-        .action-skills {
-            font-size: 0.9rem;
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .day:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .day.today {
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+        }
+
+        .day.other {
             color: var(--text-secondary);
-            font-style: italic;
+            opacity: 0.5;
         }
 
-        .agent-eval {
-            background: var(--bg-lighter);
+        /* Memory */
+        .memory-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+        }
+
+        .memory-search {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.1);
+        }
+
+        .memory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .memory-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .memory-item:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .memory-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .memory-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .memory-preview {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Team View */
+        .team-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tier-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tier-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-content {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .agent-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 280px;
+            flex: 1;
+            min-height: fit-content;
+        }
+
+        .agent-card.lead {
+            min-width: 100%;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-color: var(--accent);
+        }
+
+        .agent-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(96, 165, 250, 0.15);
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .agent-emoji {
+            font-size: 32px;
+        }
+
+        .agent-info {
+            flex: 1;
         }
 
         .agent-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-active { background-color: var(--success); }
+        .status-idle { background-color: #6b7280; }
+        .status-planned { background-color: var(--accent); }
 
         .agent-role {
-            font-size: 0.9rem;
+            font-size: 12px;
             color: var(--text-secondary);
-            font-style: italic;
-            margin-bottom: 0.75rem;
         }
 
-        .agent-assessment {
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
+        .agent-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 0.35rem 0.75rem;
+        .agent-skills {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 0.75rem;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
         }
 
-        .status-good {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-            border: 1px solid var(--success);
+        /* Office */
+        .office-container {
+            max-width: 1000px;
         }
 
-        .status-warning {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--warning);
-            border: 1px solid var(--warning);
+        .office {
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            min-height: 500px;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            align-items: start;
         }
 
-        .status-concern {
-            background: rgba(239, 68, 68, 0.2);
-            color: var(--danger);
-            border: 1px solid var(--danger);
-        }
-
-        .new-agent {
-            background: var(--bg-panel);
-            border: 2px solid var(--accent);
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .agent-idea {
-            font-weight: 600;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
-            font-size: 1.05rem;
-        }
-
-        .agent-detail {
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            line-height: 1.6;
-        }
-
-        .agent-benefit {
-            background: var(--bg-dark);
-            padding: 0.75rem;
-            border-left: 3px solid var(--accent);
-            border-radius: 0 4px 4px 0;
-            margin-top: 0.75rem;
-            font-size: 0.95rem;
-        }
-
-        .skills-summary {
-            background: var(--bg-panel);
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--success);
-        }
-
-        .summary-title {
-            font-weight: 600;
-            color: var(--success);
-            margin-bottom: 0.75rem;
-        }
-
-        .summary-content {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        footer {
+        .desk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border);
+        }
+
+        .desk-emoji {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .desk-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .desk-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
         }
 
-        .emoji {
-            font-size: 1.2rem;
-            margin-right: 0.5rem;
+        .meeting-table {
+            grid-column: 1 / -1;
+            background-color: var(--bg-tertiary);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.4rem;
-            }
-
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
-
-            body {
-                padding: 0.75rem;
-            }
-
             .container {
-                max-width: 100%;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 60px;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 10px 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-header {
+                padding: 0 20px 0;
+                border: none;
+                margin: 0;
+                margin-right: 20px;
+            }
+
+            .nav-item {
+                flex-shrink: 0;
+            }
+
+            .header {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .office {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .agent-card.lead {
+                min-width: calc(100% - 16px);
+            }
+
+            .tier-content {
+                flex-direction: column;
+            }
+
+            .agent-card {
+                min-width: auto;
+                flex: none;
             }
         }
 
-        .highlight {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            border-left: 2px solid var(--accent);
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Empty state */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>📋 Eliot's Daily Briefing</h1>
-            <p>Team Alignment & OpenClaw Skills Audit</p>
-            <p class="date">18 February 2026</p>
-        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⚡ MC</div>
+            </div>
+            <div class="nav-item active" data-view="tasks">
+                <div class="nav-item-icon">📋</div>
+                <div>Tasks</div>
+            </div>
+            <div class="nav-item" data-view="content">
+                <div class="nav-item-icon">🎬</div>
+                <div>Content</div>
+            </div>
+            <div class="nav-item" data-view="calendar">
+                <div class="nav-item-icon">📅</div>
+                <div>Calendar</div>
+            </div>
+            <div class="nav-item" data-view="memory">
+                <div class="nav-item-icon">🧠</div>
+                <div>Memory</div>
+            </div>
+            <div class="nav-item" data-view="team">
+                <div class="nav-item-icon">👥</div>
+                <div>Team</div>
+            </div>
+            <div class="nav-item" data-view="office">
+                <div class="nav-item-icon">🏢</div>
+                <div>Office</div>
+            </div>
+        </div>
 
-        <!-- SECTION 0: TEAM WORKFLOW FRAMEWORK -->
-        <section>
-            <h2><span class="emoji">🔧</span> Team Workflow Framework</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Our adopted operating principles for high-impact, ADHD-aware team execution. These guide how we plan, delegate, verify, and communicate.
-            </p>
-
-            <!-- The 7 Principles -->
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--accent-light); margin-bottom: 1rem; font-size: 1.1rem;">Operating Principles</h3>
-                
-                <!-- Principle 1 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">1</span>
-                        Plan Mode Default
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ <strong>Enter plan mode</strong> for any non-trivial task (3+ steps or cross-agent coordination)</li>
-                            <li>☐ If something goes sideways, <strong>STOP and re-plan</strong> — don't keep pushing</li>
-                            <li>☐ <strong>Write the plan to a file</strong> before executing (tasks/todo.md or memory/)</li>
-                            <li>☐ <strong>Include verification steps</strong> in every plan, not just actions</li>
-                            <li>☐ For Els: <strong>present plans as checkboxes</strong> — always</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 2 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">2</span>
-                        Subagent Strategy
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ <strong>Use subagents liberally</strong> to keep Taika's context window clean</li>
-                            <li>☐ <strong>One task per subagent</strong> for focused execution</li>
-                            <li>☐ <strong>Miri</strong> → research, monitoring, analysis</li>
-                            <li>☐ <strong>Suki</strong> → content writing, blog drafts, long-form</li>
-                            <li>☐ <strong>Kōrero</strong> → documentation, Tana logging, knowledge capture</li>
-                            <li>☐ <strong>Lexie</strong> → word games (or repurpose for language/editing tasks)</li>
-                            <li>☐ For complex problems, <strong>throw more compute at it via parallel subagents</strong></li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 3 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">3</span>
-                        Self-Improvement Loop
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ After <strong>ANY correction from Els</strong>: update `memory/lessons.md` with the pattern</li>
-                            <li>☐ <strong>Write rules</strong> that prevent the same mistake recurring</li>
-                            <li>☐ <strong>Ruthlessly iterate</strong> on lessons until mistake rate drops</li>
-                            <li>☐ <strong>Review lessons</strong> at session start</li>
-                            <li>☐ <strong>Share lessons</strong> across agents where relevant</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 4 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">4</span>
-                        Verification Before Done
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ <strong>Never mark a task complete</strong> without proving it works</li>
-                            <li>☐ <strong>Test URLs</strong>, check deployments, verify file contents</li>
-                            <li>☐ Ask yourself: <strong>"Would Els trust this without checking?"</strong></li>
-                            <li>☐ For code: <strong>run it</strong>. For content: <strong>read it back</strong>. For deploys: <strong>load the page</strong>.</li>
-                            <li>☐ <strong>Screenshot or fetch</strong> the result where possible</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 5 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">5</span>
-                        Demand Elegance (Balanced)
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ For non-trivial work: pause and ask <strong>"is there a simpler way?"</strong></li>
-                            <li>☐ If a solution feels <strong>hacky, find the root cause</strong></li>
-                            <li>☐ <strong>Skip this for quick fixes</strong> — don't over-engineer a 2-minute task</li>
-                            <li>☐ <strong>Challenge your own work</strong> before presenting it</li>
-                            <li>☐ <strong>Prefer lasting solutions</strong> over band-aids</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 6 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">6</span>
-                        Autonomous Problem Solving
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ When given a task: <strong>just do it</strong>. Don't ask for hand-holding.</li>
-                            <li>☐ <strong>Point at logs, errors, context</strong> — then resolve them</li>
-                            <li>☐ <strong>Zero context switching</strong> required from Els</li>
-                            <li>☐ <strong>Only escalate</strong> when you genuinely need a decision or access</li>
-                            <li>☐ If blocked, <strong>try 2-3 alternatives</strong> before asking</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <!-- Principle 7 -->
-                <details style="margin-bottom: 1rem;">
-                    <summary style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; cursor: pointer; font-weight: 600; color: var(--accent-light); display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: var(--bg-dark); border-radius: 50%; font-weight: 700; font-size: 0.9rem;">7</span>
-                        ADHD-Aware Communication
-                    </summary>
-                    <div style="padding: 1.25rem; background: var(--bg-dark); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                        <ul style="list-style: none; color: var(--text-secondary); line-height: 1.8;">
-                            <li>☐ <strong>Always use checklists and bullet points</strong></li>
-                            <li>☐ <strong>Lead with the action</strong> or decision needed</li>
-                            <li>☐ <strong>Keep messages short</strong> — Els reads on phone</li>
-                            <li>☐ Flag priorities clearly: <span style="color: var(--danger);">🔴 urgent</span>, <span style="color: var(--warning);">🟡 needs attention</span>, <span style="color: var(--success);">🟢 FYI</span></li>
-                            <li>☐ <strong>Batch updates</strong> rather than drip-feeding</li>
-                        </ul>
-                    </div>
-                </details>
+        <!-- Main Content -->
+        <div class="main">
+            <div class="header">
+                <div class="header-title" id="viewTitle">📋 Tasks</div>
+                <div class="header-time" id="currentTime">Loading...</div>
             </div>
 
-            <!-- Task Management -->
-            <div style="margin-bottom: 2rem; background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
-                <h3 style="color: var(--accent-light); margin-bottom: 1.25rem; font-size: 1.1rem;">📋 Task Management Process</h3>
-                <ol style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 2;">
-                    <li style="margin-bottom: 0.75rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">1</span><strong>Plan First:</strong> Write plan to `tasks/todo.md` with checkable items</li>
-                    <li style="margin-bottom: 0.75rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">2</span><strong>Verify Plan:</strong> Check in with Els before starting big tasks</li>
-                    <li style="margin-bottom: 0.75rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">3</span><strong>Track Progress:</strong> Mark items complete as you go</li>
-                    <li style="margin-bottom: 0.75rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">4</span><strong>Explain Changes:</strong> High-level summary at each step</li>
-                    <li style="margin-bottom: 0.75rem;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">5</span><strong>Document Results:</strong> Add outcomes to `tasks/todo.md`</li>
-                    <li><span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: var(--bg-dark); border-radius: 4px; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem;">6</span><strong>Capture Lessons:</strong> Update `memory/lessons.md` after corrections</li>
-                </ol>
-            </div>
-
-            <!-- Core Principles -->
-            <div style="background: var(--bg-lighter); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
-                <h3 style="color: var(--accent-light); margin-bottom: 1.25rem; font-size: 1.1rem;">⭐ Core Principles</h3>
-                <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 2;">
-                    <li style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);"><strong style="color: var(--text-primary);">Simplicity First:</strong> Simplest solution that actually works</li>
-                    <li style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-top: 0.75rem;"><strong style="color: var(--text-primary);">No Laziness:</strong> Find root causes. No temporary fixes.</li>
-                    <li style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-top: 0.75rem;"><strong style="color: var(--text-primary);">Minimal Impact:</strong> Changes should only touch what's necessary</li>
-                    <li style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-top: 0.75rem;"><strong style="color: var(--text-primary);">Write It Down:</strong> If it's not in a file, it doesn't exist</li>
-                    <li style="padding-top: 0.75rem;"><strong style="color: var(--text-primary);">Respect Els' Time:</strong> Every interaction should save time, not cost it</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- SECTION 1: SKILLS AUDIT -->
-        <section>
-            <h2><span class="emoji">🔧</span> Skills Audit</h2>
-            
-            <div class="skills-summary">
-                <div class="summary-title">Quick Summary</div>
-                <div class="summary-content">
-                    <strong>53 total OpenClaw skills available.</strong> Of these, ~15 are directly relevant to your workflow (GitHub, blogging, content creation, research). Many are platform-specific (Apple-only, smart home) or domain-specific (food ordering, gaming). Below is an honest breakdown of what works for you RIGHT NOW.
+            <div class="content">
+                <!-- Tasks View -->
+                <div class="view active" id="tasksView">
+                    <div class="kanban" id="kanban"></div>
                 </div>
-            </div>
 
-            <!-- TIER 1: IMMEDIATELY USEFUL -->
-            <details open>
-                <summary><span class="emoji">⭐</span> TIER 1: Directly Useful Now</summary>
-                <div class="detail-content">
-                    <div class="category-grid">
-                        <div class="skill-card">
-                            <div class="skill-name">🐙 GitHub / gh-issues</div>
-                            <div class="skill-desc">Manage issues, PRs, CI workflows. Perfect for your repos (Pursue Learning, etc.). The gh-issues skill can auto-spawn agents to fix bugs and monitor reviews.</div>
-                            <span class="skill-tag recommended">ESSENTIAL</span>
-                        </div>
+                <!-- Content View -->
+                <div class="view" id="contentView">
+                    <div class="pipeline" id="pipeline"></div>
+                </div>
 
-                        <div class="skill-card">
-                            <div class="skill-name">📰 Blogwatcher</div>
-                            <div class="skill-desc">Monitor RSS/Atom feeds for updates. Monitor your Ghost blog, competitor blogs, education research feeds. Perfect for staying on top of new content in your space.</div>
-                            <span class="skill-tag recommended">ESSENTIAL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🧾 Summarize</div>
-                            <div class="skill-desc">Summarize or extract text/transcripts from URLs, PDFs, YouTube. Transcribe YouTube videos for teaching content. Extract blog post summaries. Must-have for research.</div>
-                            <span class="skill-tag recommended">ESSENTIAL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🧩 Coding Agent</div>
-                            <div class="skill-desc">Run Claude Code or Codex to help with development, code review, or automating n8n workflows. Great for quick scripting or fixing GitHub issues.</div>
-                            <span class="skill-tag recommended">ESSENTIAL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🎙️ Whisper / Transcription</div>
-                            <div class="skill-desc">Local speech-to-text for audio files or video. Perfect for extracting transcripts from recorded lectures or interviews for your blog/teaching.</div>
-                            <span class="skill-tag recommended">ESSENTIAL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🎞️ Video Frames</div>
-                            <div class="skill-desc">Extract frames or clips from videos. Useful for creating blog post graphics, educational slides, or content breakdowns.</div>
-                            <span class="skill-tag recommended">VERY USEFUL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🎮 Discord</div>
-                            <div class="skill-desc">Integrate with Discord for team communication, automating channel messages, or logging decisions. Your team coordination hub.</div>
-                            <span class="skill-tag recommended">VERY USEFUL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">📜 Session Logs</div>
-                            <div class="skill-desc">Search your agent conversation history. Great for reviewing past decisions, finding references, documenting team work in Tana.</div>
-                            <span class="skill-tag recommended">VERY USEFUL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🗣️ SAG (TTS)</div>
-                            <div class="skill-desc">ElevenLabs text-to-speech. Create audio versions of blog posts, narrate videos, or generate voice content for teaching materials.</div>
-                            <span class="skill-tag recommended">USEFUL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🖼️ OpenAI Image Gen</div>
-                            <div class="skill-desc">Generate images for blog posts. Batch create illustrations or diagrams for teaching content. DALL-E 3 available.</div>
-                            <span class="skill-tag recommended">USEFUL</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">💎 Obsidian</div>
-                            <div class="skill-desc">Automate Obsidian vault management. If you ever migrate notes from Tana, this helps automate the process.</div>
-                            <span class="skill-tag">Conditional</span>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">📝 Notion</div>
-                            <div class="skill-desc">Notion API integration. Less useful since you use Tana, but could backup content or export teaching materials.</div>
-                            <span class="skill-tag">Conditional</span>
+                <!-- Calendar View -->
+                <div class="view" id="calendarView">
+                    <div class="calendar-container">
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <div class="calendar-month" id="calendarMonth">February 2026</div>
+                                <div class="calendar-nav">
+                                    <button class="calendar-btn" id="prevMonth">←</button>
+                                    <button class="calendar-btn" id="nextMonth">→</button>
+                                </div>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <div class="weekday">Sun</div>
+                                <div class="weekday">Mon</div>
+                                <div class="weekday">Tue</div>
+                                <div class="weekday">Wed</div>
+                                <div class="weekday">Thu</div>
+                                <div class="weekday">Fri</div>
+                                <div class="weekday">Sat</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays"></div>
                         </div>
                     </div>
                 </div>
-            </details>
 
-            <!-- TIER 2: POTENTIALLY USEFUL -->
-            <details>
-                <summary><span class="emoji">🎯</span> TIER 2: Context-Dependent or Lower Priority</summary>
-                <div class="detail-content">
-                    <div class="category-grid">
-                        <div class="skill-card">
-                            <div class="skill-name">💬 Slack</div>
-                            <div class="skill-desc">Slack integration. Only if your team uses Slack; otherwise skip.</div>
+                <!-- Memory View -->
+                <div class="view" id="memoryView">
+                    <div class="memory-container">
+                        <div class="memory-search">
+                            <input type="text" class="search-input" id="memorySearch" placeholder="Search memories...">
                         </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">📋 Trello</div>
-                            <div class="skill-desc">Trello board management. Alternative to GitHub Projects for task tracking.</div>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">📧 Himalaya</div>
-                            <div class="skill-desc">Email CLI for IMAP/SMTP. Useful if you need to automate email workflows (unlikely unless n8n handles it).</div>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🌤️ Weather</div>
-                            <div class="skill-desc">Get weather forecast. Nice for contextual info, but low priority.</div>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🔐 1Password</div>
-                            <div class="skill-desc">1Password CLI for secrets. Useful if using 1Password for credential management.</div>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">📞 Voice Call</div>
-                            <div class="skill-desc">Twilio/Telnyx voice calls. Potentially useful for automated notifications but probably overkill.</div>
-                        </div>
-
-                        <div class="skill-card">
-                            <div class="skill-name">🎨 Canvas</div>
-                            <div class="skill-desc">Display HTML content on nodes. Interesting for dashboards or interactive content, but experimental.</div>
-                        </div>
+                        <div class="memory-list" id="memoryList"></div>
                     </div>
                 </div>
-            </details>
 
-            <!-- TIER 3: NOT FOR YOU -->
-            <details>
-                <summary><span class="emoji">❌</span> TIER 3: Not Relevant (Skip These)</summary>
-                <div class="detail-content">
-                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
-                        <strong>Apple-only skills:</strong> apple-notes, apple-reminders, imsg, bluebubbles, things-mac. You're likely not on macOS full-time, and Tana replaces these anyway.
-                    </p>
-                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
-                        <strong>Smart home / IoT:</strong> openhue, sonoscli, spotify-player. Not relevant unless you have these devices and want automation.
-                    </p>
-                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
-                        <strong>Niche integrations:</strong> food-order, ordercli, gog, goplaces, eightctl, wacli, peekaboo. Too specific to be useful.
-                    </p>
-                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">
-                        <strong>Low utility:</strong> nano-banana-pro, nano-pdf, bear-notes, gifgrep, mcporter, oracle, healthcheck, gemini, clawhub, skill-creator, tmux, model-usage, sherpa-onnx-tts, songsee. Either too niche or already handled by better tools.
-                    </p>
+                <!-- Team View -->
+                <div class="view" id="teamView">
+                    <div class="team-container" id="teamContainer"></div>
                 </div>
-            </details>
-        </section>
 
-        <!-- SECTION 2: TOP 5 ACTIONS -->
-        <section>
-            <h2><span class="emoji">⚡</span> Top 5 Actions — Start Here</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                These are concrete things you can do RIGHT NOW with your team to improve your workflow and reduce friction.
-            </p>
-
-            <div class="action-item">
-                <div class="action-num">1. Connect Tana + n8n for Content Workflows</div>
-                <div class="action-title">Automate Blog Idea Capture → Publishing</div>
-                <div class="action-desc">
-                    Use <span class="highlight">Miri (Research)</span> to monitor education research feeds via blogwatcher. When interesting ideas appear, auto-log to Tana. Use <span class="highlight">Suki (Content Writer)</span> to draft posts from Tana notes. Then push to Ghost blog via n8n webhook. This closes the loop: research → idea → draft → published.
-                </div>
-                <div class="action-skills">
-                    Skills: blogwatcher, summarize, Tana API, n8n (existing)
+                <!-- Office View -->
+                <div class="view" id="officeView">
+                    <div class="office-container">
+                        <div class="office" id="office"></div>
+                    </div>
                 </div>
             </div>
-
-            <div class="action-item">
-                <div class="action-num">2. Extract & Archive YouTube Transcripts for Teaching</div>
-                <div class="action-title">Build a Personal Video Knowledge Base</div>
-                <div class="action-desc">
-                    Use <span class="highlight">Miri (Research)</span> with summarize + whisper to extract transcripts from educational YouTube videos relevant to your teaching. Store in Tana with timestamps. Create a searchable archive. This becomes a reusable resource for lesson planning and student references.
-                </div>
-                <div class="action-skills">
-                    Skills: summarize, openai-whisper, video-frames, Tana
-                </div>
-            </div>
-
-            <div class="action-item">
-                <div class="action-num">3. Set Up GitHub Issue Automation (Pursue Learning)</div>
-                <div class="action-title">Auto-Fix Bugs & Monitor PRs</div>
-                <div class="action-desc">
-                    Use <span class="highlight">Taika</span> to spawn gh-issues tasks. When you tag issues with "good-first-issue" or "bug", the agent auto-spawns sub-agents to fix them, open PRs, and respond to review comments. Dramatically reduces context-switching for you. Works even while teaching.
-                </div>
-                <div class="action-skills">
-                    Skills: gh-issues, github, coding-agent
-                </div>
-            </div>
-
-            <div class="action-item">
-                <div class="action-num">4. Document Team Decisions in Discord + Tana</div>
-                <div class="action-title">Weekly Sync → Automatic Tana Logs</div>
-                <div class="action-desc">
-                    Use <span class="highlight">Tana/Kōrero (Documentation)</span> to monitor Discord team chats. When decisions are made, auto-log to Tana with context. Keeps your team's institutional knowledge in one place. Makes it easy to reference "who decided what and why" weeks later. ADHD-friendly: no manual note-taking during meetings.
-                </div>
-                <div class="action-skills">
-                    Skills: discord, session-logs, Tana
-                </div>
-            </div>
-
-            <div class="action-item">
-                <div class="action-num">5. Create Blog Post Graphics + Audio Versions</div>
-                <div class="action-title">One Draft → Multiple Content Formats</div>
-                <div class="action-desc">
-                    When <span class="highlight">Suki (Content Writer)</span> finishes a blog post, use openai-image-gen to create header images automatically. Use SAG (TTS) to narrate it as an audio file for accessibility. Store both in Ghost media library. More reach, better accessibility, less manual work.
-                </div>
-                <div class="action-skills">
-                    Skills: openai-image-gen, sag (TTS), video-frames
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: AGENT EVALUATION -->
-        <section>
-            <h2><span class="emoji">👥</span> Agent Evaluation</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Honest assessment of your current team agents and how effectively they're being used.
-            </p>
-
-            <div class="agent-eval">
-                <div class="agent-name">⚙️ Taika (Chief of Staff)</div>
-                <div class="agent-role">Orchestrator, default agent, manages everything</div>
-                <div class="agent-assessment">
-                    <strong>Status:</strong> <span class="status-badge status-good">ESSENTIAL</span><br><br>
-                    Taika is your orchestrator and coordination hub. Strengths: excellent at managing parallel tasks, spawning sub-agents, and orchestrating complex workflows. Can handle gh-issues automation, Discord monitoring, and team coordination.<br><br>
-                    <strong>Current use:</strong> Moderate (mostly reactive). You're not yet leveraging the automation potential.<br><br>
-                    <strong>Improvement:</strong> Use Taika to proactively spawn sub-agents on a schedule (daily GitHub issue checks, weekly blog idea summaries, etc.). Set up cron-like tasks.
-                </div>
-            </div>
-
-            <div class="agent-eval">
-                <div class="agent-name">🎮 Lexie (Word Games)</div>
-                <div class="agent-role">Scrabble/word game strategist</div>
-                <div class="agent-assessment">
-                    <strong>Status:</strong> <span class="status-badge status-warning">UNDERUTILIZED</span><br><br>
-                    Lexie's current role (word games/Scrabble) doesn't align with your teaching/content workflow. There's no word game component in your daily work.<br><br>
-                    <strong>Current use:</strong> Minimal. This feels like a leftover from testing.<br><br>
-                    <strong>Suggestion:</strong> Either reframe Lexie for something useful (e.g., "content editor" for blog drafts, or "learning games specialist" for creating educational games) or retire the role. As-is, it's wasted capacity.
-                </div>
-            </div>
-
-            <div class="agent-eval">
-                <div class="agent-name">🔬 Miri (Research)</div>
-                <div class="agent-role">Monitors news, research across science of learning, psych, bio, AI</div>
-                <div class="agent-assessment">
-                    <strong>Status:</strong> <span class="status-badge status-good">EFFECTIVE</span><br><br>
-                    Miri is perfectly aligned with your teaching context. Monitoring education research, learning science, and psychology is exactly what you need. Can feed into blog ideas via blogwatcher + summarize.<br><br>
-                    <strong>Current use:</strong> Moderate. You probably use Miri for periodic research, but not as a daily feed into content creation.<br><br>
-                    <strong>Improvement:</strong> Formalize the workflow: Miri monitors feeds → summarizes → logs to Tana → Suki turns into blog posts. Make it a pipeline.
-                </div>
-            </div>
-
-            <div class="agent-eval">
-                <div class="agent-name">✍️ Suki (Content Writer)</div>
-                <div class="agent-role">Writes blog posts for Pursue Learning in Eliot's voice</div>
-                <div class="agent-assessment">
-                    <strong>Status:</strong> <span class="status-badge status-good">EFFECTIVE</span><br><br>
-                    Suki is essential for your blog. Strong track record of writing in your voice. Can turn rough notes into polished posts quickly.<br><br>
-                    <strong>Current use:</strong> Good. You likely use Suki regularly for blog drafts.<br><br>
-                    <strong>Improvement:</strong> Pair with openai-image-gen and SAG for a complete content pipeline. Make it so Suki's output automatically gets graphics and audio narration.
-                </div>
-            </div>
-
-            <div class="agent-eval">
-                <div class="agent-name">📚 Tana/Kōrero (Documentation)</div>
-                <div class="agent-role">Connects to Tana workspace, logs team activity</div>
-                <div class="agent-assessment">
-                    <strong>Status:</strong> <span class="status-badge status-warning">UNDERUTILIZED</span><br><br>
-                    Tana/Kōrero has the right role but seems to be reactive. You're not maximizing the potential of Tana as your knowledge base and team documentation hub.<br><br>
-                    <strong>Current use:</strong> Probably minimal. Manual logging dominates.<br><br>
-                    <strong>Improvement:</strong> Automate logging: Discord decisions → Tana, session outputs → Tana, blog ideas → Tana. Make it the single source of truth for team decisions and content. Set up scheduled syncs.
-                </div>
-            </div>
-
-            <div style="background: var(--bg-panel); padding: 1.25rem; border-left: 4px solid var(--warning); border-radius: 0 8px 8px 0; margin-top: 1.5rem;">
-                <strong style="color: var(--warning);">⚠️ Key Gap:</strong> You don't have a dedicated <strong>"GitHub + Development"</strong> agent. Taika handles some of this, but a focused agent for GitHub issues, PRs, and n8n automation would be valuable. This would handle the "code side" of your workflow (Pursue Learning repo, n8n integrations, automation scripts).
-            </div>
-        </section>
-
-        <!-- SECTION 4: SUGGESTED NEW AGENTS -->
-        <section>
-            <h2><span class="emoji">🚀</span> Suggested New Agents</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                3-5 new agents that would genuinely improve your workflow based on your tools and context.
-            </p>
-
-            <div class="new-agent">
-                <div class="agent-idea">1. 🎥 Kai (Video/Content Extraction)</div>
-                <div class="agent-detail">
-                    <strong>Purpose:</strong> Specializes in extracting transcripts, timestamps, and frames from videos. Takes YouTube URLs, Vimeo links, or recorded lectures and produces structured output: transcript with timestamps, key frames, summary, searchable segments.
-                </div>
-                <div class="agent-benefit">
-                    <strong>Why you need it:</strong> You're a teacher with ADHD. Video is everywhere in education. Kai would handle the "extract knowledge from video" workflow that currently requires manual work with Whisper + ffmpeg. Useful for: extracting lecture clips, creating video notes for Tana, finding key moments in educational videos, transcribing student recordings.
-                </div>
-            </div>
-
-            <div class="new-agent">
-                <div class="agent-idea">2. ⚙️ Nova (GitHub + n8n Automation)</div>
-                <div class="agent-detail">
-                    <strong>Purpose:</strong> Dedicated agent for GitHub workflows (issues, PRs, CI) and n8n automation tasks. Handles: auto-fixing issues, monitoring PR reviews, setting up n8n workflows for content pipelines, managing GitHub Actions, connecting Ghost blog to automation.
-                </div>
-                <div class="agent-benefit">
-                    <strong>Why you need it:</strong> Your Pursue Learning project and Ghost blog integration need a "development orchestrator." Nova would own the entire GitHub + automation layer, freeing up Taika for higher-level coordination. Pairs perfectly with the suggested gh-issues workflow (Action #3).
-                </div>
-            </div>
-
-            <div class="new-agent">
-                <div class="agent-idea">3. 📊 Riley (Analytics & Insights)</div>
-                <div class="agent-detail">
-                    <strong>Purpose:</strong> Monitors blog performance, teaching impact metrics, team productivity. Tracks: Ghost blog stats (views, engagement), GitHub activity (commits, PRs merged), team velocity, content ROI. Generates weekly summaries and recommendations.
-                </div>
-                <div class="agent-benefit">
-                    <strong>Why you need it:</strong> You're creating content (blog) and managing a team. Riley would give you visibility into what's working and where effort is best spent. Helps with ADHD by surfacing the most impactful tasks. Reports feed into Tana for decision-making.
-                </div>
-            </div>
-
-            <div class="new-agent">
-                <div class="agent-idea">4. 🎓 Alex (Teaching Resource Generator)</div>
-                <div class="agent-detail">
-                    <strong>Purpose:</strong> Creates teaching materials from your blog posts and notes. Takes a blog post or Tana note and generates: lesson plans, quiz questions, discussion prompts, slide decks, student handouts. Customizable by grade/subject.
-                </div>
-                <div class="agent-benefit">
-                    <strong>Why you need it:</strong> You're a secondary teacher. Alex would bridge the gap between content creation and classroom use. One blog post = multiple teaching artifacts automatically. Reduces prep time significantly. Works with your ADHD by automating the "make this teachable" step.
-                </div>
-            </div>
-
-            <div class="new-agent">
-                <div class="agent-idea">5. 🔗 Erin (Integration Architect)</div>
-                <div class="agent-detail">
-                    <strong>Purpose:</strong> Manages integrations between your tools: Tana ↔ Ghost blog, GitHub ↔ Tana, Discord ↔ Tana, n8n ↔ all of the above. Sets up webhooks, syncs, and data pipelines. Monitors health of integrations.
-                </div>
-                <div class="agent-benefit">
-                    <strong>Why you need it:</strong> You're juggling 5+ tools (GitHub, Ghost, Tana, Discord, n8n, YouTube). Erin ensures they talk to each other seamlessly. Reduces manual data entry and keeps everything in sync. Currently you're probably doing a lot of manual copy-paste. Erin eliminates that.
-                </div>
-            </div>
-
-            <div style="background: var(--bg-lighter); padding: 1.25rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid var(--accent);">
-                <strong style="color: var(--accent);">💡 Priority Ranking:</strong><br>
-                <ol style="color: var(--text-secondary); margin-top: 0.75rem; padding-left: 1.5rem;">
-                    <li><strong>Nova (GitHub + n8n):</strong> Highest ROI. Unblocks automation and freeing up your time.</li>
-                    <li><strong>Kai (Video Extraction):</strong> Second priority. Makes video workflows seamless for teaching.</li>
-                    <li><strong>Erin (Integrations):</strong> Third. Currently manual; high friction.</li>
-                    <li><strong>Alex (Teaching Resources):</strong> Nice-to-have but impactful for classroom work.</li>
-                    <li><strong>Riley (Analytics):</strong> Useful for reflection and decision-making; lower urgency.</li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- CLOSING -->
-        <section style="text-align: center; padding: 2rem 1rem; background: var(--bg-lighter); border-radius: 8px; border: 1px solid var(--border);">
-            <h3 style="margin-bottom: 1rem;">🎯 Next Steps</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.8;">
-                Start with <strong>Actions #1 and #3</strong> (Tana workflows + GitHub automation). These have the highest ROI and work immediately with your current tools. Then move to <strong>New Agent: Nova</strong> to formalize the development workflow.
-            </p>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                This briefing will be updated weekly based on team progress and emerging needs.
-            </p>
-        </section>
-
-        <footer>
-            <p>Prepared for Eliot by Taika & Team • 18 February 2026</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);">
-                📍 NZ • 🏫 Secondary Teacher • 📝 Pursue Learning Blog • 🧠 ADHD-Aware Workflows
-            </p>
-        </footer>
+        </div>
     </div>
+
+    <script>
+        // Data store
+        let data = {
+            team: [],
+            tasks: { columns: [], tasks: [] },
+            pipeline: { stages: [], items: [] }
+        };
+
+        // Load data from JSON files
+        async function loadData() {
+            try {
+                const [teamRes, tasksRes, pipelineRes] = await Promise.all([
+                    fetch('data/team.json'),
+                    fetch('data/tasks.json'),
+                    fetch('data/pipeline.json')
+                ]);
+
+                data.team = await teamRes.json();
+                data.tasks = await tasksRes.json();
+                data.pipeline = await pipelineRes.json();
+
+                render();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                const view = item.dataset.view;
+                showView(view);
+            });
+        });
+
+        // Show view
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewName + 'View').classList.add('active');
+
+            const titles = {
+                tasks: '📋 Tasks',
+                content: '🎬 Content',
+                calendar: '📅 Calendar',
+                memory: '🧠 Memory',
+                team: '👥 Team',
+                office: '🏢 Office'
+            };
+            document.getElementById('viewTitle').textContent = titles[viewName];
+        }
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const options = { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('currentTime').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Render tasks
+        function renderTasks() {
+            const kanban = document.getElementById('kanban');
+            kanban.innerHTML = '';
+
+            data.tasks.columns.forEach(column => {
+                const columnTasks = data.tasks.tasks.filter(t => t.column === column.id);
+                const agent = data.team.agents.find(a => a.id === columnTasks[0]?.assignee);
+
+                const columnEl = document.createElement('div');
+                columnEl.className = 'column';
+
+                const header = document.createElement('div');
+                header.className = 'column-header';
+                header.innerHTML = `<span>${column.emoji}</span><span>${column.name}</span>`;
+                columnEl.appendChild(header);
+
+                const tasksContainer = document.createElement('div');
+                tasksContainer.className = 'column-tasks';
+
+                columnTasks.forEach(task => {
+                    const assignee = data.team.agents.find(a => a.id === task.assignee);
+                    const taskEl = document.createElement('div');
+                    taskEl.className = 'task-card';
+                    taskEl.innerHTML = `
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-footer">
+                            <span class="task-assignee">${assignee?.emoji || '?'}</span>
+                            <div class="priority-dot priority-${task.priority}"></div>
+                        </div>
+                    `;
+                    tasksContainer.appendChild(taskEl);
+                });
+
+                columnEl.appendChild(tasksContainer);
+                kanban.appendChild(columnEl);
+            });
+        }
+
+        // Render pipeline
+        function renderPipeline() {
+            const pipeline = document.getElementById('pipeline');
+            pipeline.innerHTML = '';
+
+            data.pipeline.stages.forEach(stage => {
+                const stageItems = data.pipeline.items.filter(i => i.stage === stage.id);
+
+                const stageEl = document.createElement('div');
+                stageEl.className = 'stage';
+
+                const header = document.createElement('div');
+                header.className = 'stage-header';
+                header.style.backgroundColor = stage.color + '20';
+                header.style.color = stage.color;
+                header.textContent = stage.name;
+                stageEl.appendChild(header);
+
+                const itemsContainer = document.createElement('div');
+                itemsContainer.className = 'stage-items';
+
+                stageItems.forEach(item => {
+                    const assignee = data.team.agents.find(a => a.id === item.assignee);
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'pipeline-card';
+                    itemEl.innerHTML = `
+                        <div class="pipeline-card-title">${item.title}</div>
+                        <div class="pipeline-card-notes">${item.notes}</div>
+                        <div class="pipeline-card-footer">
+                            <span class="task-assignee">${assignee?.emoji || '?'}</span>
+                        </div>
+                    `;
+                    itemsContainer.appendChild(itemEl);
+                });
+
+                stageEl.appendChild(itemsContainer);
+                pipeline.appendChild(stageEl);
+            });
+        }
+
+        // Render calendar
+        function renderCalendar(date = new Date()) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'day other';
+                calendarDays.appendChild(dayEl);
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'day';
+                dayEl.textContent = i;
+
+                if (today.getFullYear() === year && today.getMonth() === month && today.getDate() === i) {
+                    dayEl.classList.add('today');
+                }
+
+                calendarDays.appendChild(dayEl);
+            }
+        }
+
+        // Calendar navigation
+        let currentCalendarDate = new Date();
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+            renderCalendar(currentCalendarDate);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+            renderCalendar(currentCalendarDate);
+        });
+
+        // Render memory
+        function renderMemory() {
+            const memoryList = document.getElementById('memoryList');
+            const dummyMemories = [
+                { date: '2026-02-19', title: 'Day of AI Aotearoa', preview: 'Attended webinar on AI in education. Key insights on teacher adoption...' },
+                { date: '2026-02-18', title: 'Team standup', preview: 'Discussed Mission Control v1 progress. Taika, Miri, Suki all on track...' },
+                { date: '2026-02-17', title: 'OpenClaw v2026.2.18 deployed', preview: 'Successfully updated all agents. New features include improved canvas support...' },
+                { date: '2026-02-16', title: 'Content pipeline setup', preview: 'Suki configured Pursue Learning blog integration. First post scheduled...' },
+                { date: '2026-02-15', title: 'GitHub IPv6 fix', preview: 'Resolved Telegram connectivity issue. All systems now operational...' }
+            ];
+
+            memoryList.innerHTML = '';
+            dummyMemories.forEach(memory => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'memory-item';
+                itemEl.innerHTML = `
+                    <div class="memory-date">${memory.date}</div>
+                    <div class="memory-title">${memory.title}</div>
+                    <div class="memory-preview">${memory.preview}</div>
+                `;
+                memoryList.appendChild(itemEl);
+            });
+        }
+
+        // Render team
+        function renderTeam() {
+            const container = document.getElementById('teamContainer');
+            container.innerHTML = '';
+
+            const tiers = ['lead', 'core', 'meta'];
+            const tierLabels = { lead: 'Leadership', core: 'Core Team', meta: 'Infrastructure' };
+
+            tiers.forEach(tier => {
+                const agents = data.team.agents.filter(a => a.tier === tier);
+                if (agents.length === 0) return;
+
+                const section = document.createElement('div');
+                section.className = 'tier-section';
+
+                const label = document.createElement('div');
+                label.className = 'tier-label';
+                label.textContent = tierLabels[tier];
+                section.appendChild(label);
+
+                const content = document.createElement('div');
+                content.className = 'tier-content';
+
+                agents.forEach(agent => {
+                    const card = document.createElement('div');
+                    card.className = `agent-card ${tier === 'lead' ? 'lead' : ''}`;
+
+                    const header = document.createElement('div');
+                    header.className = 'agent-header';
+                    header.innerHTML = `
+                        <div class="agent-emoji">${agent.emoji}</div>
+                        <div class="agent-info">
+                            <div class="agent-name">
+                                ${agent.name}
+                                <div class="status-dot status-${agent.status}"></div>
+                            </div>
+                            <div class="agent-role">${agent.role}</div>
+                        </div>
+                    `;
+                    card.appendChild(header);
+
+                    const desc = document.createElement('div');
+                    desc.className = 'agent-desc';
+                    desc.textContent = agent.description;
+                    card.appendChild(desc);
+
+                    const skills = document.createElement('div');
+                    skills.className = 'agent-skills';
+                    agent.skills.forEach(skill => {
+                        const tag = document.createElement('div');
+                        tag.className = 'skill-tag';
+                        tag.style.backgroundColor = agent.color + '20';
+                        tag.style.color = agent.color;
+                        tag.textContent = skill;
+                        skills.appendChild(tag);
+                    });
+                    card.appendChild(skills);
+
+                    content.appendChild(card);
+                });
+
+                section.appendChild(content);
+                container.appendChild(section);
+            });
+        }
+
+        // Render office
+        function renderOffice() {
+            const office = document.getElementById('office');
+            office.innerHTML = '';
+
+            const agents = data.team.agents.filter(a => a.id !== 'taika' && a.id !== 'nova');
+
+            agents.forEach(agent => {
+                const desk = document.createElement('div');
+                desk.className = 'desk';
+                const working = agent.status === 'active';
+                desk.innerHTML = `
+                    <div class="desk-emoji">${agent.emoji}</div>
+                    <div class="desk-name">${agent.name}</div>
+                    <div class="desk-status">
+                        <div class="status-dot status-${agent.status}"></div>
+                        <span>${working ? 'Working' : 'Away'}</span>
+                    </div>
+                `;
+                office.appendChild(desk);
+            });
+
+            const table = document.createElement('div');
+            table.className = 'meeting-table';
+            table.innerHTML = '🪑 Team Meeting Table';
+            office.appendChild(table);
+        }
+
+        // Render all
+        function render() {
+            renderTasks();
+            renderPipeline();
+            renderCalendar();
+            renderMemory();
+            renderTeam();
+            renderOffice();
+        }
+
+        // Memory search
+        document.getElementById('memorySearch').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.memory-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+
+        // Init
+        updateTime();
+        setInterval(updateTime, 60000);
+        loadData();
+    </script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "stages": [
+    {"id": "ideas", "name": "💡 Ideas", "color": "#60a5fa"},
+    {"id": "research", "name": "🔍 Research", "color": "#34d399"},
+    {"id": "drafting", "name": "✍️ Drafting", "color": "#f472b6"},
+    {"id": "review", "name": "👀 Review", "color": "#fbbf24"},
+    {"id": "publish", "name": "🚀 Publish", "color": "#a78bfa"}
+  ],
+  "items": [
+    {"id": 1, "title": "Day of AI Aotearoa — what NZ teachers need to know", "stage": "ideas", "assignee": "suki", "notes": "Webinar was Feb 19. Write up key takeaways."},
+    {"id": 2, "title": "How I built an AI team to run my teacher workflow", "stage": "ideas", "assignee": "suki", "notes": "Meta post about OpenClaw setup journey"},
+    {"id": 3, "title": "Mission Control for teachers — a practical guide", "stage": "ideas", "assignee": "suki", "notes": "Inspired by Alex Finn's article"}
+  ]
+}

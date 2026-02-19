@@ -1,0 +1,21 @@
+{
+  "columns": [
+    {"id": "backlog", "name": "Backlog", "emoji": "📥"},
+    {"id": "todo", "name": "To Do", "emoji": "📋"},
+    {"id": "in-progress", "name": "In Progress", "emoji": "🔨"},
+    {"id": "review", "name": "Review", "emoji": "👀"},
+    {"id": "done", "name": "Done", "emoji": "✅"}
+  ],
+  "tasks": [
+    {"id": 1, "title": "Set up gh CLI API auth", "assignee": "taika", "column": "done", "priority": "high"},
+    {"id": 2, "title": "Build Mission Control v1", "assignee": "miri", "column": "in-progress", "priority": "high"},
+    {"id": 3, "title": "Create Nova developer agent", "assignee": "taika", "column": "todo", "priority": "medium"},
+    {"id": 4, "title": "Repurpose Lexie as Editor/QA", "assignee": "taika", "column": "todo", "priority": "medium"},
+    {"id": 5, "title": "Set up content pipeline for Pursue Learning", "assignee": "suki", "column": "backlog", "priority": "medium"},
+    {"id": 6, "title": "YouTube transcript extraction workflow", "assignee": "taika", "column": "backlog", "priority": "medium"},
+    {"id": 7, "title": "Daily briefing automation improvements", "assignee": "miri", "column": "backlog", "priority": "low"},
+    {"id": 8, "title": "Fix Telegram IPv6 connectivity", "assignee": "taika", "column": "done", "priority": "high"},
+    {"id": 9, "title": "Update OpenClaw to v2026.2.18", "assignee": "taika", "column": "done", "priority": "high"},
+    {"id": 10, "title": "Deploy briefing to GitHub Pages", "assignee": "miri", "column": "done", "priority": "high"}
+  ]
+}

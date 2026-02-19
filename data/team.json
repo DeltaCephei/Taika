@@ -1,0 +1,76 @@
+{
+  "agents": [
+    {
+      "id": "taika",
+      "name": "Taika",
+      "role": "Chief of Staff",
+      "emoji": "🪶",
+      "model": "Claude Opus",
+      "color": "#60a5fa",
+      "tier": "lead",
+      "description": "Coordinates, delegates, keeps the ship tight. First point of contact between Els and the team.",
+      "skills": ["Orchestration", "Planning", "Delegation"],
+      "status": "active"
+    },
+    {
+      "id": "miri",
+      "name": "Miri",
+      "role": "Research & Intel",
+      "emoji": "🔍",
+      "model": "Claude Haiku",
+      "color": "#34d399",
+      "tier": "core",
+      "description": "Finds leads, tracks signals, scours research. The team's eyes and ears on the world.",
+      "skills": ["Speed", "Analysis", "Monitoring"],
+      "status": "active"
+    },
+    {
+      "id": "suki",
+      "name": "Suki",
+      "role": "Content Writer",
+      "emoji": "✍️",
+      "model": "Claude Sonnet",
+      "color": "#f472b6",
+      "tier": "core",
+      "description": "Writes blog posts for Pursue Learning in Eliot's voice. Drafts, edits, publishes.",
+      "skills": ["Voice", "Quality", "Storytelling"],
+      "status": "active"
+    },
+    {
+      "id": "korero",
+      "name": "Kōrero",
+      "role": "Documentation",
+      "emoji": "📝",
+      "model": "Claude Sonnet",
+      "color": "#fbbf24",
+      "tier": "core",
+      "description": "Logs everything to Tana. The team's memory keeper and knowledge architect.",
+      "skills": ["Structure", "Precision", "Memory"],
+      "status": "active"
+    },
+    {
+      "id": "lexie",
+      "name": "Lexie",
+      "role": "Editor & QA",
+      "emoji": "🎯",
+      "model": "Claude Sonnet",
+      "color": "#a78bfa",
+      "tier": "core",
+      "description": "Quality control, proofreading, fact-checking. Makes sure everything is polished before it goes out.",
+      "skills": ["Accuracy", "Language", "Detail"],
+      "status": "idle"
+    },
+    {
+      "id": "nova",
+      "name": "Nova",
+      "role": "Developer",
+      "emoji": "⚙️",
+      "model": "Claude Sonnet",
+      "color": "#fb923c",
+      "tier": "meta",
+      "description": "Builds, fixes, automates. GitHub issues, n8n workflows, code. The quiet one who makes everything work.",
+      "skills": ["Code", "Systems", "Reliability"],
+      "status": "planned"
+    }
+  ]
+}
