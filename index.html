@@ -360,15 +360,17 @@
         }
 
         .day {
-            aspect-ratio: 1;
+            min-height: 70px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 4px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
             transition: all 0.2s ease;
             border: 1px solid transparent;
+            overflow: hidden;
         }
 
         .day:hover {
@@ -1260,8 +1262,19 @@
             });
         }
 
+        // Calendar data
+        let calendarEvents = [];
+        async function loadCalendarData() {
+            try {
+                const res = await fetch('data/calendar.json');
+                const cal = await res.json();
+                calendarEvents = cal.events || [];
+            } catch(e) { calendarEvents = []; }
+        }
+
         // Render calendar
-        function renderCalendar(date = new Date()) {
+        async function renderCalendar(date = new Date()) {
+            if (calendarEvents.length === 0) await loadCalendarData();
             const year = date.getFullYear();
             const month = date.getMonth();
 
@@ -1285,7 +1298,37 @@
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayEl = document.createElement('div');
                 dayEl.className = 'day';
-                dayEl.textContent = i;
+                
+                const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+                const dayEvents = calendarEvents.filter(e => e.date === dateStr);
+
+                const numEl = document.createElement('div');
+                numEl.textContent = i;
+                numEl.style.fontWeight = '600';
+                numEl.style.marginBottom = '2px';
+                dayEl.appendChild(numEl);
+
+                dayEvents.forEach(evt => {
+                    const tag = document.createElement('div');
+                    tag.textContent = evt.title;
+                    tag.style.fontSize = '9px';
+                    tag.style.padding = '1px 3px';
+                    tag.style.borderRadius = '3px';
+                    tag.style.marginTop = '1px';
+                    tag.style.overflow = 'hidden';
+                    tag.style.textOverflow = 'ellipsis';
+                    tag.style.whiteSpace = 'nowrap';
+                    tag.style.cursor = 'default';
+                    tag.title = `${evt.title}${evt.time !== 'all-day' ? ' @ ' + evt.time : ''}\n${evt.location || ''}`;
+                    if (evt.source === 'timetable') {
+                        tag.style.background = '#7c3aed';
+                        tag.style.color = '#e2e8f0';
+                    } else {
+                        tag.style.background = '#059669';
+                        tag.style.color = '#e2e8f0';
+                    }
+                    dayEl.appendChild(tag);
+                });
 
                 if (today.getFullYear() === year && today.getMonth() === month && today.getDate() === i) {
                     dayEl.classList.add('today');
@@ -1293,6 +1336,23 @@
 
                 calendarDays.appendChild(dayEl);
             }
+
+            // Render upcoming events list below calendar
+            let upcomingEl = document.getElementById('upcomingEvents');
+            if (!upcomingEl) {
+                upcomingEl = document.createElement('div');
+                upcomingEl.id = 'upcomingEvents';
+                upcomingEl.style.marginTop = '20px';
+                document.querySelector('.calendar-container').appendChild(upcomingEl);
+            }
+            const upcoming = calendarEvents
+                .filter(e => new Date(e.date) >= new Date(today.toISOString().split('T')[0]))
+                .slice(0, 10);
+            upcomingEl.innerHTML = '<div style="font-size:16px;font-weight:700;margin-bottom:12px">📅 Next Up</div>' +
+                upcoming.map(e => `<div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-panel);border-radius:8px;margin-bottom:6px">
+                    <span style="font-size:13px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${e.source==='timetable'?'#7c3aed':'#059669'};margin-right:8px"></span>${e.title}</span>
+                    <span style="font-size:12px;color:var(--text-dim)">${e.date} ${e.time !== 'all-day' ? e.time : ''}</span>
+                </div>`).join('');
         }
 
         // Calendar navigation
