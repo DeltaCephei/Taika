@@ -771,9 +771,9 @@
         }
 
         .tier-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 16px;
-            flex-wrap: wrap;
         }
 
         .agent-card {
@@ -783,13 +783,11 @@
             padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            min-width: 280px;
-            flex: 1;
             min-height: fit-content;
         }
 
         .agent-card.lead {
-            min-width: 100%;
+            grid-column: 1 / -1;
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
             border-color: var(--accent);
         }
@@ -1245,17 +1243,8 @@
                 width: 100% !important;
             }
 
-            .agent-card.lead {
-                min-width: calc(100% - 16px);
-            }
-
             .tier-content {
-                flex-direction: column;
-            }
-
-            .agent-card {
-                min-width: auto;
-                flex: none;
+                grid-template-columns: 1fr;
             }
         }
 
