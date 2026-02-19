@@ -2,13 +2,6 @@
   "events": [
     {
       "date": "2026-02-19",
-      "time": "08:50",
-      "title": "Psy2 (1)",
-      "location": "L7",
-      "source": "timetable"
-    },
-    {
-      "date": "2026-02-19",
       "time": "11:00",
       "title": "Bio3 (3)",
       "location": "L2",
@@ -708,5 +701,5 @@
       "source": "timetable"
     }
   ],
-  "updated": "2026-02-19T19:00:07.833805+00:00"
+  "updated": "2026-02-19T21:00:06.892271+00:00"
 }
