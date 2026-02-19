@@ -1,11 +1,712 @@
 {
   "events": [
     {
+      "date": "2026-02-18",
+      "time": "19:50",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "22:00",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "22:55",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "00:25",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "23:35",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "01:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "20:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "21:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-22",
+      "time": "23:35",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "19:50",
+      "title": "HASM (ATEPirates)",
+      "location": "Hall\\,L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "20:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "21:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "23:35",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-24",
+      "time": "01:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-24",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-24",
+      "time": "22:35",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-24",
+      "time": "23:35",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "01:20",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "19:50",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "22:00",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "22:55",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "00:25",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "20:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "23:35",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-27",
+      "time": "01:20",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-02-27",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-01",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-01",
+      "time": "20:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-01",
+      "time": "21:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "01:20",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "20:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "22:35",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-02",
+      "time": "23:35",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-03",
+      "time": "01:20",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-03",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-03",
+      "time": "20:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-03",
+      "time": "22:35",
+      "title": "PASM2 (ATEPirates)",
+      "location": "L1\\,Hall",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-03",
+      "time": "23:35",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-04",
+      "time": "01:20",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
       "date": "2026-03-04",
       "time": "06:00",
       "title": "Life Behind the Lens with Doug Allan (Blenheim)",
-      "location": "Scenic Hotel Marlborough\\, 65 Alfred Street\\, Blenheim 7201\\, New"
+      "location": "Scenic Hotel Marlborough\\, 65 Alfred Street\\, Blenheim 7201\\, New",
+      "source": "personal"
+    },
+    {
+      "date": "2026-03-04",
+      "time": "19:50",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-04",
+      "time": "22:00",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-04",
+      "time": "22:55",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-05",
+      "time": "00:25",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-05",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-05",
+      "time": "23:35",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-06",
+      "time": "01:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-06",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-08",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-08",
+      "time": "20:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-08",
+      "time": "21:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-08",
+      "time": "23:35",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "19:50",
+      "title": "HASM (ATEPirates)",
+      "location": "Hall\\,L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "20:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "21:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "23:35",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-10",
+      "time": "01:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-10",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-10",
+      "time": "22:35",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-10",
+      "time": "23:35",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "01:20",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "19:50",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "22:00",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "22:55",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "00:25",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "20:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "23:35",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-13",
+      "time": "01:20",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-13",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-15",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-15",
+      "time": "20:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-15",
+      "time": "21:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "01:20",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "20:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "22:35",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "23:35",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "01:20",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "20:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "22:35",
+      "title": "PASM2 (ATEPirates)",
+      "location": "L1\\,Hall",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "23:35",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "01:20",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "19:50",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "22:00",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "22:55",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "00:25",
+      "title": "MGC (ATE)",
+      "location": "",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "19:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "23:35",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-20",
+      "time": "01:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-20",
+      "time": "02:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-19T06:25:12.699535+00:00"
+  "updated": "2026-02-19T06:27:02.123653+00:00"
 }
