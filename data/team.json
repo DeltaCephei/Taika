@@ -4,96 +4,156 @@
       "id": "taika",
       "name": "Taika",
       "role": "Chief of Staff",
-      "emoji": "\ud83e\udeb6",
+      "emoji": "🪶",
       "model": "Claude Opus",
       "color": "#60a5fa",
       "tier": "lead",
       "description": "Coordinates, delegates, keeps the ship tight. First point of contact between Els and the team.",
-      "skills": [
-        "Orchestration",
-        "Planning",
-        "Delegation"
-      ],
+      "skills": ["Orchestration", "Planning", "Delegation"],
       "status": "active"
     },
     {
       "id": "miri",
       "name": "Miri",
       "role": "Research & Intel",
-      "emoji": "\ud83d\udd0d",
-      "model": "Claude Haiku",
+      "emoji": "🔍",
+      "model": "Claude Sonnet",
       "color": "#34d399",
       "tier": "core",
       "description": "Finds leads, tracks signals, scours research. The team's eyes and ears on the world.",
-      "skills": [
-        "Speed",
-        "Analysis",
-        "Monitoring"
-      ],
+      "skills": ["Speed", "Analysis", "Monitoring"],
       "status": "active"
     },
     {
       "id": "suki",
       "name": "Suki",
       "role": "Content Writer",
-      "emoji": "\u270d\ufe0f",
+      "emoji": "✍️",
       "model": "Claude Sonnet",
       "color": "#f472b6",
       "tier": "core",
       "description": "Writes blog posts for Pursue Learning in Eliot's voice. Drafts, edits, publishes.",
-      "skills": [
-        "Voice",
-        "Quality",
-        "Storytelling"
-      ],
+      "skills": ["Voice", "Quality", "Storytelling"],
       "status": "active"
     },
     {
       "id": "korero",
-      "name": "K\u014drero",
+      "name": "Kōrero",
       "role": "Documentation",
-      "emoji": "\ud83d\udcdd",
+      "emoji": "📝",
       "model": "Claude Sonnet",
       "color": "#fbbf24",
       "tier": "core",
       "description": "Logs everything to Tana. The team's memory keeper and knowledge architect.",
-      "skills": [
-        "Structure",
-        "Precision",
-        "Memory"
-      ],
+      "skills": ["Structure", "Precision", "Memory"],
       "status": "active"
     },
     {
       "id": "lexie",
       "name": "Marshall",
-      "role": "Editor & QA",
-      "emoji": "\ud83d\udc07",
+      "role": "Copy Editor",
+      "emoji": "✂️",
       "model": "Claude Sonnet",
       "color": "#a78bfa",
       "tier": "core",
-      "description": "Quality control, proofreading, fact-checking. Makes sure everything is polished before it goes out.",
-      "skills": [
-        "Accuracy",
-        "Language",
-        "Detail"
-      ],
-      "status": "idle"
+      "description": "Sharp-eyed copy editor and QA. Catches errors, enforces NZ English, polishes everything before it goes out.",
+      "skills": ["Grammar", "NZ English", "QA"],
+      "status": "active"
+    },
+    {
+      "id": "darwin",
+      "name": "Darwin",
+      "role": "Biology Specialist",
+      "emoji": "🧬",
+      "model": "Claude Sonnet",
+      "color": "#4ade80",
+      "tier": "specialist",
+      "description": "NCEA Biology L3 expert. Builds resources, explains concepts, aligns to standards.",
+      "skills": ["Biology", "NCEA", "Resources"],
+      "status": "active"
+    },
+    {
+      "id": "ego",
+      "name": "Ego",
+      "role": "Psychology Specialist",
+      "emoji": "🧠",
+      "model": "Claude Sonnet",
+      "color": "#c084fc",
+      "tier": "specialist",
+      "description": "NCEA Psychology L2/L3 expert. Research methods, theories, revision resources.",
+      "skills": ["Psychology", "NCEA", "Research"],
+      "status": "active"
+    },
+    {
+      "id": "tomkins",
+      "name": "Tomkins",
+      "role": "Andragogy Expert",
+      "emoji": "🎓",
+      "model": "Claude Sonnet",
+      "color": "#fb923c",
+      "tier": "specialist",
+      "description": "Adult learning theory specialist. Course design grounded in how adults actually learn.",
+      "skills": ["Andragogy", "Course Design", "Theory"],
+      "status": "active"
+    },
+    {
+      "id": "mnemno",
+      "name": "Mnemno",
+      "role": "Science of Learning",
+      "emoji": "📚",
+      "model": "Claude Sonnet",
+      "color": "#f97316",
+      "tier": "specialist",
+      "description": "Memory, retrieval practice, spacing, interleaving. Evidence-based learning strategies.",
+      "skills": ["Memory", "Retrieval", "Evidence"],
+      "status": "active"
+    },
+    {
+      "id": "muse",
+      "name": "Muse",
+      "role": "Writer's Muse",
+      "emoji": "✨",
+      "model": "Claude Sonnet",
+      "color": "#e879f9",
+      "tier": "creative",
+      "description": "Brainstorming partner and idea generator. Throws sparks, makes connections, asks 'what if?'",
+      "skills": ["Ideas", "Creativity", "Lateral Thinking"],
+      "status": "active"
+    },
+    {
+      "id": "scheme",
+      "name": "Scheme",
+      "role": "Curriculum Architect",
+      "emoji": "📋",
+      "model": "Claude Sonnet",
+      "color": "#2dd4bf",
+      "tier": "education",
+      "description": "Builds schemes of work, unit plans, assessment frameworks. NZ curriculum and NCEA expert.",
+      "skills": ["Curriculum", "NCEA", "Backward Design"],
+      "status": "active"
+    },
+    {
+      "id": "thinkific",
+      "name": "Thinki",
+      "role": "Course Builder",
+      "emoji": "🎓",
+      "model": "Claude Sonnet",
+      "color": "#38bdf8",
+      "tier": "education",
+      "description": "Online course creation specialist. Thinkific platform, instructional design, monetisation.",
+      "skills": ["Thinkific", "Course Design", "Monetisation"],
+      "status": "active"
     },
     {
       "id": "nova",
       "name": "Nova",
       "role": "Developer",
-      "emoji": "\u2699\ufe0f",
+      "emoji": "⚙️",
       "model": "Claude Sonnet",
       "color": "#fb923c",
       "tier": "meta",
-      "description": "Builds, fixes, automates. GitHub issues, n8n workflows, code. The quiet one who makes everything work.",
-      "skills": [
-        "Code",
-        "Systems",
-        "Reliability"
-      ],
+      "description": "Builds, fixes, automates. GitHub issues, n8n workflows, code.",
+      "skills": ["Code", "Systems", "Reliability"],
       "status": "planned"
     }
   ]
