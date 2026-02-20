@@ -1,13 +1,6 @@
 {
   "events": [
     {
-      "date": "2026-02-19",
-      "time": "13:25",
-      "title": "MGC (ATE)",
-      "location": "",
-      "source": "timetable"
-    },
-    {
       "date": "2026-02-20",
       "time": "08:50",
       "title": "WT (ATEPirates)",
@@ -40,6 +33,13 @@
       "time": "09:00",
       "title": "9am - 2.45pm Cruise and Explore\\, and Family Day Out",
       "location": "Lochmara Bay\\, Queen Charlotte Sound 7220 New Zealand",
+      "source": "personal"
+    },
+    {
+      "date": "2026-02-21",
+      "time": "18:10",
+      "title": "Marama",
+      "location": "Blenheim\\, 4 Kinross Street\\, Blenheim\\, NZ\\, 7201",
       "source": "personal"
     },
     {
@@ -694,5 +694,5 @@
       "source": "timetable"
     }
   ],
-  "updated": "2026-02-19T23:00:08.275414+00:00"
+  "updated": "2026-02-20T01:00:08.433054+00:00"
 }
