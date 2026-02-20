@@ -699,7 +699,14 @@
       "title": "Psy2 (1)",
       "location": "L7",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "10:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-20T21:04:24.323641+00:00"
+  "updated": "2026-02-20T23:04:23.381604+00:00"
 }
