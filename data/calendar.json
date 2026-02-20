@@ -2,13 +2,6 @@
   "events": [
     {
       "date": "2026-02-20",
-      "time": "08:50",
-      "title": "WT (ATEPirates)",
-      "location": "L1",
-      "source": "timetable"
-    },
-    {
-      "date": "2026-02-20",
       "time": "12:35",
       "title": "Psy3 (4)",
       "location": "L7",
@@ -692,7 +685,21 @@
       "title": "Duty (ATE)",
       "location": "BkCg",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "08:50",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "09:10",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-20T19:00:06.687320+00:00"
+  "updated": "2026-02-20T21:00:06.571852+00:00"
 }
