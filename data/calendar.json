@@ -2,13 +2,6 @@
   "events": [
     {
       "date": "2026-02-21",
-      "time": "09:00",
-      "title": "9am - 2.45pm Cruise and Explore\\, and Family Day Out",
-      "location": "Lochmara Bay\\, Queen Charlotte Sound 7220 New Zealand",
-      "source": "personal"
-    },
-    {
-      "date": "2026-02-21",
       "time": "18:10",
       "title": "Marama",
       "location": "Blenheim\\, 4 Kinross Street\\, Blenheim\\, NZ\\, 7201",
@@ -699,7 +692,21 @@
       "title": "Duty (ATE)",
       "location": "BkCg",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "08:50",
+      "title": "HASM (ATEPirates)",
+      "location": "Hall\\,L1",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "09:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-21T19:04:24.281114+00:00"
+  "updated": "2026-02-21T21:04:23.353288+00:00"
 }
