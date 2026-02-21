@@ -1,20 +1,6 @@
 {
   "events": [
     {
-      "date": "2026-02-20",
-      "time": "14:20",
-      "title": "Psy2 (1)",
-      "location": "L7",
-      "source": "timetable"
-    },
-    {
-      "date": "2026-02-20",
-      "time": "15:15",
-      "title": "Duty (ATE)",
-      "location": "BkCg",
-      "source": "timetable"
-    },
-    {
       "date": "2026-02-21",
       "time": "09:00",
       "title": "9am - 2.45pm Cruise and Explore\\, and Family Day Out",
@@ -706,7 +692,14 @@
       "title": "MGC (ATE)",
       "location": "",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "15:15",
+      "title": "Duty (ATE)",
+      "location": "BkCg",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-21T01:04:23.196655+00:00"
+  "updated": "2026-02-21T03:04:23.826500+00:00"
 }
