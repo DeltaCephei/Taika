@@ -706,7 +706,14 @@
       "title": "Psy3 (4)",
       "location": "L7",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "10:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-21T21:04:23.353288+00:00"
+  "updated": "2026-02-21T23:04:23.196068+00:00"
 }
