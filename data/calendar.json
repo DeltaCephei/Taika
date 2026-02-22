@@ -720,7 +720,14 @@
       "title": "Psy2 (1)",
       "location": "L7",
       "source": "timetable"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "14:20",
+      "title": "Psy2 (1)",
+      "location": "L7",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-02-22T01:04:23.367706+00:00"
+  "updated": "2026-02-22T03:04:23.009702+00:00"
 }
