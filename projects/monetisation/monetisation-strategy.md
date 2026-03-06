@@ -165,7 +165,7 @@ Your warm path is: **teacher contact → HOD/IT → principal**. Don't start at 
 ## 🧪 Product 2: Chemical Database & Expiry Alerter
 
 ### What You Have
-- Replaces existing ~$3,000/yr subscriptions (likely ChemAlert enterprise tier)
+- Replaces **GoNoGo** (~$3,000/yr subscription at MBC)
 - Chemical inventory management
 - Expiry date tracking and alerts
 - Built for NZ school context
@@ -174,17 +174,19 @@ Your warm path is: **teacher contact → HOD/IT → principal**. Don't start at 
 
 | Product | NZ School Price | Notes |
 |---------|-----------------|-------|
-| **Chemwatch (via Crescendo NZ)** | **NZ$450–590/yr** | Official NZ school reseller; GoldFFX + Smarter Suite; 1 Mar–28 Feb subscription cycle |
+| **GoNoGo** (gonogo.co.nz) | **NZ$1,000+GST/yr** (base); ~$3,000/yr with modules | NZ-built safety management platform — broader than just chemicals (incidents, hazards, projects, meetings). Schools pay for the full platform but often only use the chemical/hazard bits |
+| **Chemwatch (via Crescendo NZ)** | **NZ$450–590/yr** | Chemical-specific; GoldFFX + Smarter Suite; 1 Mar–28 Feb subscription cycle |
 | **ChemAlert (RMT Global)** | Enterprise pricing (estimate NZ$3,000–8,000/yr) | Primarily mining/manufacturing; overkill for schools |
 | **cheminventory.net** | USD $99–299/yr depending on users | US-focused, not NZ SDS library |
 
-**The real competitor:** Chemwatch via Crescendo at $450–590/yr is the baseline NZ schools currently pay. Many schools pay nothing and use paper-based systems (huge compliance risk).
+**The real competitor:** GoNoGo at $1,000–3,000/yr is what NZ schools are actually paying. It's a full safety management suite — schools pay for the whole thing but mostly just use the chemical inventory module. Many smaller schools pay nothing and use paper-based systems (huge compliance risk).
 
 ### Your Differentiation
-- Potentially significantly cheaper than Chemwatch
+- **Focused** — does one thing well vs GoNoGo's bloated safety suite
+- **Cheaper** — schools stop paying for incident management, project planning, meeting tools they never use
 - NZ-specific: built around NZ H&S Act, NZ SDS requirements
-- Expiry alerting (Chemwatch doesn't do this particularly well)
-- Simpler UX than enterprise platforms
+- Expiry alerting (GoNoGo doesn't do this particularly well)
+- Simpler UX than enterprise platforms — designed by a science teacher, not a safety consultant
 - You can provide actual local support
 
 ### The Compliance Angle (Use This)
@@ -210,16 +212,15 @@ Schools often prefer one-off purchases for budget reasons (capital vs. operating
 **Recommended default:** Push the **annual subscription** — frame it as "always current with NZ H&S requirements." Regulations change; they need to stay updated.
 
 **Pricing rationale:**
-- Cheaper than Chemwatch ($450–590) → easy to justify
-- Significantly cheaper than ChemAlert → "enterprise value at school price"
+- Significantly cheaper than GoNoGo ($1,000–3,000/yr) → easy to justify
+- Schools stop paying for modules they don't use
 - Enough margin to cover your time for support
 
 ### Go-to-Market
 
 **This is your easiest first product to sell:**
-- Science HoDs feel this pain every year at Chemwatch renewal time
-- The renewal window is **February–March** (Chemwatch runs Mar–Feb)
-- **Target outreach: November–January** before renewals hit
+- Science HoDs feel this pain every year at GoNoGo renewal time
+- **Target outreach: Term 3–4** before budget decisions are locked in for the following year
 
 **First steps:**
 1. Document your NZ school as a case study (before/after)
@@ -379,7 +380,7 @@ This is underrated in your mix. **NZ schools are desperately underserved on prac
 **Target:** NZ$10,000–20,000 cumulative
 
 - [ ] Digital Signage: Pitch 10+ schools with a proper landing page and demo
-- [ ] Chemical DB: Time outreach for October–November (before Chemwatch renewals)
+- [ ] Chemical DB: Time outreach for Term 3–4 (before GoNoGo renewals and next-year budget decisions)
 - [ ] Run first paid online workshop (webinar format, $79–99/ticket, 20+ attendees)
 - [ ] Launch Ghost membership tier ($9–15/month)
 - [ ] Speak at uLearn — this is a major credibility builder and lead generator
@@ -468,7 +469,7 @@ This is underrated in your mix. **NZ schools are desperately underserved on prac
 |------|-----------|--------|------------|
 | **School owns your IP** | High | Critical | Talk to principal NOW, get written agreement |
 | **Products require ongoing support you can't sustain** | Medium | High | Build support into pricing; set clear SLAs; keep it simple |
-| **Chemwatch drops price to undercut you** | Low | Medium | Differentiate on NZ-specific features + personal support |
+| **GoNoGo drops price to undercut you** | Low | Medium | Differentiate on focus + simplicity — they'd have to unbundle their whole platform |
 | **NZ market too small for digital signage** | Medium | Medium | Price for NZ first; AU schools are also accessible |
 | **ADHD makes consistent execution hard** | High | High | Build systems (not willpower): Notion, scheduled blocks, automations |
 | **Teaching job suffers from side project demands** | Medium | High | Protect mornings; batch work; async-first with customers |
@@ -501,7 +502,7 @@ This is underrated in your mix. **NZ schools are desperately underserved on prac
 - **NZSSTA** — Secondary teachers
 
 **Distribution/Resellers to Approach:**
-- **Crescendo** (crescendo.co.nz) — sells Chemwatch to NZ schools; know the market
+- **GoNoGo** (gonogo.co.nz) — the incumbent; know what they charge and where they're weak
 - **Education Gazette** — gazette.education.govt.nz — advertise here; principals read it
 - **New Era Technology NZ** — NZ digital signage integrator; potential partner
 
