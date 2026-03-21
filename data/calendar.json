@@ -10,15 +10,15 @@
     {
       "date": "2026-03-23",
       "time": "08:50",
-      "title": "WT (ATEPirates)",
-      "location": "L1",
+      "title": "WT (DAKPirates)",
+      "location": "L5",
       "source": "timetable"
     },
     {
       "date": "2026-03-23",
       "time": "08:50",
-      "title": "WT (DAKPirates)",
-      "location": "L5",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
       "source": "timetable"
     },
     {
@@ -370,7 +370,21 @@
       "title": "HASM (ATEPirates)",
       "location": "Hall\\,L1",
       "source": "timetable"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "10:10",
+      "title": "Psy3 (4)",
+      "location": "L7",
+      "source": "timetable"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "11:10",
+      "title": "Bio3 (3)",
+      "location": "L2",
+      "source": "timetable"
     }
   ],
-  "updated": "2026-03-21T21:04:23.112855+00:00"
+  "updated": "2026-03-21T23:04:22.564955+00:00"
 }
