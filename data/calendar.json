@@ -3,15 +3,15 @@
     {
       "date": "2026-03-23",
       "time": "08:50",
-      "title": "WT (ATEPirates)",
-      "location": "L1",
+      "title": "WT (DAKPirates)",
+      "location": "L5",
       "source": "timetable"
     },
     {
       "date": "2026-03-23",
       "time": "08:50",
-      "title": "WT (DAKPirates)",
-      "location": "L5",
+      "title": "WT (ATEPirates)",
+      "location": "L1",
       "source": "timetable"
     },
     {
@@ -393,5 +393,5 @@
       "source": "timetable"
     }
   ],
-  "updated": "2026-03-22T03:04:22.469328+00:00"
+  "updated": "2026-03-22T05:04:23.855901+00:00"
 }
